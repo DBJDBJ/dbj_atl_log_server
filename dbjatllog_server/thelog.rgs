@@ -1,0 +1,32 @@
+HKCR
+{
+	thelog.thelog.1 = s 'thelog Class'
+	{
+		CLSID = s '{CE863F40-799C-11D2-94EF-000000000000}'
+	}
+	thelog.thelog = s 'thelog Class'
+	{
+		CurVer = s 'thelog.thelog.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {CE863F40-799C-11D2-94EF-000000000000} = s 'thelog Class'
+		{
+			ProgID = s 'thelog.thelog.1'
+			VersionIndependentProgID = s 'thelog.thelog'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{CE863F33-799C-11D2-94EF-000000000000}'
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '132497'
+			}
+			'TypeLib' = s '{CE863F32-799C-11D2-94EF-000000000000}'
+			'Version' = s '1.0'
+		}
+	}
+}

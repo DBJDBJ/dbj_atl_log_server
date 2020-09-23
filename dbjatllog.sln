@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog", "dbjatllog_server\dbjatllog.vcxproj", "{55D0845D-6410-4DEA-BBB8-40F37006D4AA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog_cpp_client", "dbjatllog_cpp_client\dbjatllog_cpp_client.vcxproj", "{D8CD330A-28DF-447B-8A48-EA87539405A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release MinDependency|x64 = Release MinDependency|x64
+		Release MinDependency|x86 = Release MinDependency|x86
+		Release MinSize|x64 = Release MinSize|x64
+		Release MinSize|x86 = Release MinSize|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		Unicode Debug|x64 = Unicode Debug|x64
+		Unicode Debug|x86 = Unicode Debug|x86
+		Unicode Release MinDependency|x64 = Unicode Release MinDependency|x64
+		Unicode Release MinDependency|x86 = Unicode Release MinDependency|x86
+		Unicode Release MinSize|x64 = Unicode Release MinSize|x64
+		Unicode Release MinSize|x86 = Unicode Release MinSize|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Debug|x64.ActiveCfg = Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Debug|x64.Build.0 = Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Debug|x86.ActiveCfg = Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Debug|x86.Build.0 = Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release MinDependency|x64.ActiveCfg = Release MinDependency|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release MinDependency|x86.ActiveCfg = Release MinDependency|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release MinDependency|x86.Build.0 = Release MinDependency|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release MinSize|x64.ActiveCfg = Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release MinSize|x86.ActiveCfg = Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release MinSize|x86.Build.0 = Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release|x64.ActiveCfg = Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release|x64.Build.0 = Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release|x86.ActiveCfg = Unicode Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release|x86.Build.0 = Unicode Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Debug|x64.ActiveCfg = Unicode Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Debug|x86.ActiveCfg = Unicode Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Debug|x86.Build.0 = Unicode Debug|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Release MinDependency|x64.ActiveCfg = Unicode Release MinDependency|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Release MinDependency|x86.ActiveCfg = Unicode Release MinDependency|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Release MinDependency|x86.Build.0 = Unicode Release MinDependency|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Release MinSize|x64.ActiveCfg = Unicode Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Release MinSize|x86.ActiveCfg = Unicode Release MinSize|Win32
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Unicode Release MinSize|x86.Build.0 = Unicode Release MinSize|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x64.ActiveCfg = Debug|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x64.Build.0 = Debug|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x86.ActiveCfg = Debug|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x86.Build.0 = Debug|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinDependency|x64.ActiveCfg = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinDependency|x64.Build.0 = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinDependency|x86.ActiveCfg = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinDependency|x86.Build.0 = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinSize|x64.ActiveCfg = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinSize|x64.Build.0 = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinSize|x86.ActiveCfg = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release MinSize|x86.Build.0 = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x64.ActiveCfg = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x64.Build.0 = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x86.ActiveCfg = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x86.Build.0 = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Debug|x64.ActiveCfg = Debug|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Debug|x64.Build.0 = Debug|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Debug|x86.ActiveCfg = Debug|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Debug|x86.Build.0 = Debug|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinDependency|x64.ActiveCfg = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinDependency|x64.Build.0 = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinDependency|x86.ActiveCfg = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinDependency|x86.Build.0 = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinSize|x64.ActiveCfg = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinSize|x64.Build.0 = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinSize|x86.ActiveCfg = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Unicode Release MinSize|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70DED823-79C8-493C-BA83-D20B92991A7F}
+	EndGlobalSection
+EndGlobal

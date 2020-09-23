@@ -1,0 +1,21 @@
+<html !DOCTYPE html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>ATL 2.0 test page for object thelog</title>
+</head>
+<body>
+<object id="thelog" classid="clsid:ce863f40-799c-11d2-94ef-000000000000" >
+</object>
+<button type="button"
+onclick="log_status()">Click me to display the log status</button>
+<script>
+log_status = function () {
+   var str = new String("status?") ;
+   console.log( thelog );
+   // alert(str + "");
+}
+</script>
+</body>
+</html>
