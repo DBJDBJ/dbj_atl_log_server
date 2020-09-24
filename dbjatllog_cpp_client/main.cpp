@@ -89,7 +89,7 @@ inline void SomeFunction() {    __try    {
     }
 
 //----------------------------------------------------------------------------------------------------
-    void log(const char* txt_);
+    HRESULT log(const char* txt_);
 
 int APIENTRY program(/*_In_*/ HINSTANCE /*hInstance*/,
     /*_In_opt_*/ HINSTANCE /*hPrevInstance*/,
@@ -107,7 +107,22 @@ int APIENTRY wWinMain(/*_In_*/ HINSTANCE hInstance,
 
     __try
     {
-        log("diving into the program now!");
+        HRESULT hRes = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+        _ASSERTE(SUCCEEDED(hRes));
+
+        HRESULT logrez = log("diving into the program now!");
+
+        if (FAILED(logrez))
+        {
+            char msg[win32_errormsg_size] = { 0 };
+
+            win32_errormsg(HRESULT_CODE(logrez), & msg );
+
+            // for to be seen in the debbuger; at this point
+            const char* see_mee = msg;
+            UNREFERENCED_PARAMETER( see_mee );
+
+        }
         return program(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
     }
     __except (
