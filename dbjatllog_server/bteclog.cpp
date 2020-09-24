@@ -45,8 +45,14 @@ END_OBJECT_MAP()
 
 /*
 */
-enum { UnregServer_arg = 0, RegServer_arg = 1, cli_arguments_max_count = 2 };
-static const wchar_t* cli_arguments[cli_arguments_max_count] = { L"UnregServer", L"RegServer" };
+enum 
+{ 
+	UnregServer_arg = 0, RegServer_arg = 1, cli_arguments_max_count = 2 
+};
+
+static const wchar_t* 
+cli_arguments[cli_arguments_max_count] 
+= { L"UnregServer", L"RegServer" };
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,6 +76,8 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 
 	if (wcsstr(lpCmdLine, cli_arguments[UnregServer_arg]) != NULL)
 	{
+		__debugbreak();
+
 		hr_esult_ = _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE);
 		_ASSERTE(SUCCEEDED(hr_esult_));
 		int_result_ = _Module.UnregisterServer();
@@ -78,16 +86,19 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 
 	if (wcsstr(lpCmdLine, cli_arguments[RegServer_arg]) != NULL)
 	{
+		__debugbreak();
+
 		hr_esult_ = _Module.UpdateRegistryFromResource(IDR_Bteclog, TRUE);
 		_ASSERTE(SUCCEEDED(hr_esult_));
 		int_result_ = _Module.RegisterServer(TRUE);
-		proceed_ = FALSE;
+		proceed_ = TRUE; // dbj changed to true
 	}
 
 	if (proceed_)
 	{
 		hr_esult_ = _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,
 			REGCLS_MULTIPLEUSE);
+
 		_ASSERTE(SUCCEEDED(hr_esult_));
 
 		MSG msg;
