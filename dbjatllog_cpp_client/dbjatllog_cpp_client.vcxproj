@@ -158,11 +158,6 @@
     <Image Include="bteclog_cpp_client.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\dbjatllog_server\dbjatllog.vcxproj">
-      <Project>{55d0845d-6410-4dea-bbb8-40f37006d4aa}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

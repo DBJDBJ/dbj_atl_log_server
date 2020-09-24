@@ -60,13 +60,14 @@ cli_arguments[cli_arguments_max_count]
 extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 	HINSTANCE /*hPrevInstance*/, LPWSTR lpCmdLine, int /*nShowCmd*/)
 {
-	// WARNING: lpCmdLine is not NULL will NOT contain the app name
+	// WARNING: if lpCmdLine is not NULL it will NOT contain the app name
 	if (!lpCmdLine)
-		// taken from here lpCmdLine  will contain the app name
+		// taken from here lpCmdLine  **might** contain the app name
 		lpCmdLine = GetCommandLineW();
 
-	HRESULT hr_esult_ = CoInitializeEx(NULL, COINIT_MULTITHREADED);
-	_ASSERTE(SUCCEEDED(hr_esult_));
+	MSGBOXW(lpCmdLine);
+
+	verify_hresult( CoInitializeEx(NULL, COINIT_MULTITHREADED) );
 
 	_Module.Init(ObjectMap, hInstance);
 	_Module.dwThreadID = GetCurrentThreadId();
@@ -76,36 +77,36 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 
 	if (wcsstr(lpCmdLine, cli_arguments[UnregServer_arg]) != NULL)
 	{
-		__debugbreak();
-
-		hr_esult_ = _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE);
-		_ASSERTE(SUCCEEDED(hr_esult_));
+		verify_hresult( _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE) ) ;
 		int_result_ = _Module.UnregisterServer();
 		proceed_ = FALSE;
+		MSGBOXW(L"UNRegistered OK");
 	}
 
 	if (wcsstr(lpCmdLine, cli_arguments[RegServer_arg]) != NULL)
 	{
-		__debugbreak();
+		verify_hresult( _Module.UpdateRegistryFromResource(IDR_Bteclog, TRUE) ) ;
 
-		hr_esult_ = _Module.UpdateRegistryFromResource(IDR_Bteclog, TRUE);
-		_ASSERTE(SUCCEEDED(hr_esult_));
 		int_result_ = _Module.RegisterServer(TRUE);
-		proceed_ = TRUE; // dbj changed to true
+		proceed_ = FALSE; 
+		MSGBOXW(L"Registered OK");
 	}
 
 	if (proceed_)
 	{
-		hr_esult_ = _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,
-			REGCLS_MULTIPLEUSE);
+		verify_hresult( _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,
+			REGCLS_MULTIPLEUSE) ) ;
 
-		_ASSERTE(SUCCEEDED(hr_esult_));
+		MSGBOXW(L"Server is running. Before stoping it call it from a command line with the 'UnregServer' single argument.");
 
 		MSG msg;
 		while (GetMessage(&msg, 0, 0, 0))
 			DispatchMessage(&msg);
 
 		_Module.RevokeClassObjects();
+	}
+	else {
+		MSGBOXW(L"Control mesagess where handled. To run the server repeat the command without arguments. ");
 	}
 
 	CoUninitialize();

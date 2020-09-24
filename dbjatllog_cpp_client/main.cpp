@@ -107,22 +107,10 @@ int APIENTRY wWinMain(/*_In_*/ HINSTANCE hInstance,
 
     __try
     {
-        HRESULT hRes = CoInitializeEx(NULL, COINIT_MULTITHREADED);
-        _ASSERTE(SUCCEEDED(hRes));
+        verify_hresult(CoInitializeEx(NULL, COINIT_MULTITHREADED));
 
-        HRESULT logrez = log("diving into the program now!");
+        verify_hresult( log("diving into the program now!") );
 
-        if (FAILED(logrez))
-        {
-            char msg[win32_errormsg_size] = { 0 };
-
-            win32_errormsg(HRESULT_CODE(logrez), & msg );
-
-            // for to be seen in the debbuger; at this point
-            const char* see_mee = msg;
-            UNREFERENCED_PARAMETER( see_mee );
-
-        }
         return program(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
     }
     __except (

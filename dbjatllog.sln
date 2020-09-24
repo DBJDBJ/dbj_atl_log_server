@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog", "dbjatllog_serv
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog_cpp_client", "dbjatllog_cpp_client\dbjatllog_cpp_client.vcxproj", "{D8CD330A-28DF-447B-8A48-EA87539405A1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shared_items", "shared_items\shared_items.vcxitems", "{93AAE22C-830F-4BDE-8330-418C0F8EC6F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
