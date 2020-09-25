@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../shared_items/hresult_verify.h" // verify_hresult
-#include "../shared_items/win32_error_msg_box_exit.h"
+#include "../shared_items/hresult_verify.h" // VERIFY_HRESULT
+#include "../shared_items/win_msg_box.h"
+#include "../shared_items/win_guid_compare.h"
 
 #ifndef STRICT
 #define STRICT

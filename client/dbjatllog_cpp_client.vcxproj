@@ -24,6 +24,7 @@
     <ProjectGuid>{d8cd330a-28df-447b-8a48-ea87539405a1}</ProjectGuid>
     <RootNamespace>bteclogcppclient</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>dbjatllog_client</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

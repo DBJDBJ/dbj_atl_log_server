@@ -1,4 +1,4 @@
-
+/* (c) 2020 by dbj@dbj.org -- LICENSE_DBJ -- https://dbj.org/license_dbj/ */
 #include "framework.h"
 
 #define APP_NAME "bteclog_cpp_client"
@@ -97,7 +97,7 @@ int APIENTRY program(/*_In_*/ HINSTANCE /*hInstance*/,
     /*_In_*/ int       /*nCmdShow*/);
 
 //----------------------------------------------------------------------------------------------------
-int APIENTRY wWinMain(/*_In_*/ HINSTANCE hInstance,
+extern "C" int APIENTRY wWinMain(/*_In_*/ HINSTANCE hInstance,
     /*_In_opt_*/ HINSTANCE hPrevInstance,
     /*_In_*/ LPWSTR    lpCmdLine,
     /*_In_*/ int       nCmdShow)
@@ -107,11 +107,17 @@ int APIENTRY wWinMain(/*_In_*/ HINSTANCE hInstance,
 
     __try
     {
-        verify_hresult(CoInitializeEx(NULL, COINIT_MULTITHREADED));
+        VERIFY_HRESULT(CoInitializeEx(NULL, COINIT_MULTITHREADED));
 
-        verify_hresult( log("diving into the program now!") );
+        __try {
 
-        return program(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+            VERIFY_HRESULT(log("diving into the program now!"));
+
+            program(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+        }
+        __finally {
+            CoUninitialize();
+        }
     }
     __except (
        GenerateDump(GetExceptionInformation())
@@ -132,6 +138,7 @@ int APIENTRY wWinMain(/*_In_*/ HINSTANCE hInstance,
             puts(dump_last_run.dump_file_name);
         }
     }
+  
         return EXIT_FAILURE;
 }
 

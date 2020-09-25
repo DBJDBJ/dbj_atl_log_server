@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog", "server\dbjatllog.vcxproj", "{55D0845D-6410-4DEA-BBB8-40F37006D4AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Debug|x64.ActiveCfg = Debug|x64
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Debug|x64.Build.0 = Debug|x64
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release|x64.ActiveCfg = Release|x64
+		{55D0845D-6410-4DEA-BBB8-40F37006D4AA}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3C1AD44-E411-4888-A87C-D4C33E5EED9C}
+	EndGlobalSection
+EndGlobal

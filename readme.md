@@ -10,15 +10,20 @@ Client server communication over COM is working. Server is mainly without functi
 
 ## Usage
 
-1. make sure you start the cmd.exe in admin mode and Visual Studio in admin mode too
+Two separate solutions are provided, one for sever and one for client. You need to open two Visual Studio sessions. One with `server.sln` and the other with `client.sln`. Even better if you have two (or more) monitors. you keep them completely separate.
+
+1. make sure you start the cmd.exe in admin mode, then goto to the solutions folder. In x64/Debug or x64/Release is where the binaries will be after a build.
 2. debug build of the server has a lot of message box popup's so you can see what is going on
 3. You need to start `dbjatllog RegServer` first
-    1. then you need to restart it with no arguments, now server runs
+    1. then you need to restart it with no arguments, 
+    2. Now server runs
 4. then start the client VStudio debugging session and follow that `log()` call
-   1. it all works, but nothing is logged :)
-   2. you can open another VStudio session (as admin again!) and attach the debugger to the `dbjatllog` process. Please the break points inside methods to catch the COM message arrivals.
+   1. it all works, but nothing is logged yet :)
+   2. You can open another VStudio session and attach the debugger to the `dbjatllog` process. Plece the break points inside methods to catch the COM message arrivals.
 5. to stop the server you need to do `dbjatllog UnregServer` 
 
 
+
+---
 
 &copy; 2020 by dbj@dbj.org -- LICENSE_DBJ -- https://dbj.org/license_dbj/

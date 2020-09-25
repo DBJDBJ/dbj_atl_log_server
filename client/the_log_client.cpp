@@ -1,10 +1,13 @@
+/* (c) 2020 by dbj@dbj.org -- LICENSE_DBJ -- https://dbj.org/license_dbj/ */
+
+#include "framework.h"
 
 ///KB: http://resources.esri.com/help/9.3/arcgisengine/com_cpp/COM/VCpp/ImportArcGISTypeLibs.htm
 
-#define DBJ_LOG_TYPE_LIB "../dbjatllog_server/bteclog.tlb"
+#define DBJ_LOG_TYPE_LIB "../server/bteclog.tlb"
 #define DBJ_TYPE_LIB_NAMESPACE "dbjlog"
 
-#import "../dbjatllog_server/bteclog.tlb"          /* Type library to generate C++ wrappers */ \
+#import DBJ_LOG_TYPE_LIB          /* Type library to generate C++ wrappers */ \
   raw_interfaces_only,                             /* Don't add raw_ to method names        */ \
   raw_native_types,                                /* Don't map to DTC smart types          */ \
   rename_namespace(DBJ_TYPE_LIB_NAMESPACE),                                                    \
@@ -18,25 +21,23 @@ HRESULT log(const char* txt_)
 {
 	dbjlog::IthelogPtr loggy ;
 
-	// WARNING: CoInitialize() must be called before any COM API is used
-	// CLSID_thelog
 	/*
 	if you do not register the server first, you will get
 	onecore\com\combase\dcomrem\resolver.cxx(2491)\combase.dll!00007FF99BFA5FF6: (caller: 00007FF99BFA5F05) ReturnHr(2) tid(2d7c) 80040154 Class not registered
 	on using the __uuidof() as bellow
 	*/
-	auto wotisthis = __uuidof(dbjlog::thelog);
-	HRESULT hr = loggy.CreateInstance(dbjlog::CLSID_thelog);
-	if (FAILED(hr)) return hr;
-	// HRESULT_CODE(hr) can turn that into win32 error code
+	constexpr GUID wotisthis = __uuidof(dbjlog::thelog);
 
-	assert( loggy );
+	constexpr bool b1 = dbj::win::equal_guids(wotisthis, wotisthis);
+
+	VERIFY_HRESULT( loggy.CreateInstance(dbjlog::CLSID_thelog) ) ;
+
+	DBJ_ASSERT( loggy );
 
 	loggy->put_logfilename(_bstr_t(L"logfile.log"));
 
 	_bstr_t log_file_path ;
-	hr = loggy->get_logfilename( & log_file_path.GetBSTR() );
-	if (FAILED(hr)) return hr;
+	VERIFY_HRESULT( loggy->get_logfilename( & log_file_path.GetBSTR() ) ) ;
 	
 	return S_OK;
 }

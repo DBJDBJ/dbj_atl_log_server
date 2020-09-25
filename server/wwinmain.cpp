@@ -65,9 +65,9 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		// taken from here lpCmdLine  **might** contain the app name
 		lpCmdLine = GetCommandLineW();
 
-	MSGBOXW(lpCmdLine);
+	if (lpCmdLine) DBGW(lpCmdLine);
 
-	verify_hresult( CoInitializeEx(NULL, COINIT_MULTITHREADED) );
+	VERIFY_HRESULT( CoInitializeEx(NULL, COINIT_MULTITHREADED) );
 
 	_Module.Init(ObjectMap, hInstance);
 	_Module.dwThreadID = GetCurrentThreadId();
@@ -77,27 +77,29 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 
 	if (wcsstr(lpCmdLine, cli_arguments[UnregServer_arg]) != NULL)
 	{
-		verify_hresult( _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE) ) ;
+		VERIFY_HRESULT( _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE) ) ;
 		int_result_ = _Module.UnregisterServer();
 		proceed_ = FALSE;
-		MSGBOXW(L"UNRegistered OK");
+		DBGW(L"UNRegistered OK");
 	}
 
 	if (wcsstr(lpCmdLine, cli_arguments[RegServer_arg]) != NULL)
 	{
-		verify_hresult( _Module.UpdateRegistryFromResource(IDR_Bteclog, TRUE) ) ;
+		VERIFY_HRESULT( _Module.UpdateRegistryFromResource(IDR_Bteclog, TRUE) ) ;
 
 		int_result_ = _Module.RegisterServer(TRUE);
 		proceed_ = FALSE; 
-		MSGBOXW(L"Registered OK");
+		DBGW(L"Registered OK");
 	}
 
 	if (proceed_)
 	{
-		verify_hresult( _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,
-			REGCLS_MULTIPLEUSE) ) ;
+		HRESULT hr_ = _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,	REGCLS_MULTIPLEUSE) ;
 
-		MSGBOXW(L"Server is running. Before stoping it call it from a command line with the 'UnregServer' single argument.");
+		if (SUCCEEDED(hr_))
+			DBGW(L"Server is running. Before stoping it call it from a command line with the 'UnregServer' single argument.");
+		else
+			DBGW(L"For some reason RegisterClassObjects() on module has failed? Still I will attempt to run. ");
 
 		MSG msg;
 		while (GetMessage(&msg, 0, 0, 0))
@@ -106,7 +108,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		_Module.RevokeClassObjects();
 	}
 	else {
-		MSGBOXW(L"Control mesagess where handled. To run the server repeat the command without arguments. ");
+		DBGW(L"Control mesagess where handled. To run the server repeat the command without arguments. ");
 	}
 
 	CoUninitialize();

@@ -1,45 +1,41 @@
 #pragma once
 
+#include "win32_strsafe.h"
+#include "windows_includer.h"
+// #include "dbj_win_buffer.h"
+
 #include <stdbool.h>
 #include <strsafe.h>
 #include <crtdbg.h>
 
-//    StringCchPrintfA( szFileName, MAX_PATH, "%s%s", ... );
-#undef  win32_sprintfa
-#define win32_sprintfa StringCchPrintfA
-
-#undef  win32_sprintfw
-#define win32_sprintfw StringCchPrintfW
-
-#include "windows_includer.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
 	// with no extension
-	static inline const wchar_t* this_base_namew()
+	static inline const wchar_t * this_base_namew()
 	{
-		static wchar_t this_base_name[0xFF] = {'\0'};
+		static wchar_t this_base_name[0xFF] = { L'\0' };
 
-		if (this_base_name[0] == '\0') {
-			
-			wchar_t this_file[1024] = { '\0' };
+		if (this_base_name[0] == L'\0') {
 
-			int rez = GetModuleFileNameW( 
-				(HMODULE)NULL ,	this_file,1024
+			wchar_t this_file[1024] = { L'\0' };
+
+			int rez = GetModuleFileNameW(
+				(HMODULE)NULL, this_file, 1024
 			);
 
 			wchar_t* last_slash = wcsrchr(this_file, L'\\');
-			wchar_t* last_dot   = wcsrchr(this_file, L'.');
-			wchar_t* walker = last_slash + 1 ;
+			wchar_t* last_dot = wcsrchr(this_file, L'.');
+			wchar_t* walker = last_slash + 1;
 
-			_ASSERTE(last_slash);
-			_ASSERTE(last_dot);
-			_ASSERTE(walker);
+			DBJ_ASSERT(last_slash);
+			DBJ_ASSERT(last_dot);
+			DBJ_ASSERT(walker);
 
 			int this_base_name_idx = 0;
-			while (walker != last_dot ) {
+			while (walker != last_dot) {
 				this_base_name[this_base_name_idx++] = *walker;
 				walker++;
 			}
@@ -51,40 +47,86 @@ extern "C" {
 		return this_base_name;
 	}
 
-
-	//  msg box no exit
-	static inline void win32_msg_boxA
-	(const char msg[], const char* file_, const long line_)
+	static inline const char * this_base_namea()
 	{
-		char buff[1024] = { 0 };
-		win32_sprintfa(buff, 1024, "\n%s\n\nFile: %s\nLine: %d", msg, file_, line_);
+		static char this_base_name[0xFF] = { '\0' };
 
-		MessageBoxA(NULL, (LPCSTR)buff, "Message", MB_OK);
+		if (this_base_name[0] == '\0') {
+
+			char this_file[1024] = { '\0' };
+
+			int rez = GetModuleFileNameA(
+				(HMODULE)NULL, this_file, 1024
+			);
+
+			char* last_slash = strchr(this_file, L'\\');
+			char* last_dot = strchr(this_file, L'.');
+			char* walker = last_slash + 1;
+
+			DBJ_ASSERT(last_slash);
+			DBJ_ASSERT(last_dot);
+			DBJ_ASSERT(walker);
+
+			int this_base_name_idx = 0;
+			while (walker != last_dot) {
+				this_base_name[this_base_name_idx++] = *walker;
+				walker++;
+			}
+			this_base_name[this_base_name_idx] = '\0';
+
+			return this_base_name;
+		}
+
+		return this_base_name;
 	}
 
-#undef MSGBOXA
+
+	//  msg box no exit
+	static inline void win32_msg_boxA(const char * fmt_ , ...)
+	{
+		DBJ_ASSERT(fmt_);
+		char buff[1024] = { 0 };
+		va_list argptr;
+		va_start(argptr, fmt_ );
+		HRESULT hr_ = win_vsprintfa(buff, 1024, fmt_, argptr) ;
+		DBJ_ASSERT( S_OK == hr_ ) ;
+		va_end(argptr);
+		MessageBoxA(NULL, (LPCSTR)buff, this_base_namea(), MB_OK);
+	}
+
+#undef DBGA
 #ifdef _DEBUG
-#define MSGBOXA(m_) win32_msg_boxA(m_ , __FILE__, __LINE__)
+#define DBGA(m_) win32_msg_boxA(("%s\n\n%s\n\n%d", m_, __FILE__, __LINE__)
 #else // ! _DEBUG
-#define MSGBOXA(m_) 
+#define DBGA(m_) 
 #endif // ! _DEBUG
 
-	static inline void win32_msg_boxW
-	(const wchar_t msg[], const wchar_t* file_, const long line_)
+	static inline void win32_msg_boxW(const wchar_t * fmt_ , ... )
 	{
-		wchar_t buff[1024] = { L'\0' };
-		win32_sprintfw(buff, 1024, L"\n%s\n\nFile: %s\nLine: %d", msg, file_, line_);
-
+		DBJ_ASSERT(fmt_);
+		WCHAR buff[1024] = { (WCHAR)0 };
+		va_list argptr;
+		va_start(argptr, fmt_);
+		HRESULT hr_ = win_vsprintfw(buff, 1024, fmt_, argptr);
+		DBJ_ASSERT(S_OK == hr_);
+		va_end(argptr);
 		MessageBoxW(NULL, (LPCWSTR)buff, this_base_namew(), MB_OK);
 	}
 
-#undef MSGBOXW
+#undef DBGW
 #ifdef _DEBUG
-#define MSGBOXW(m_) win32_msg_boxW(m_, __FILEW__, __LINE__ )
+#define DBGW(m_) win32_msg_boxW(L"%s\n\n%s\n\n%d", m_, __FILEW__, __LINE__ )
 #else // ! _DEBUG
-#define MSGBOXW(m_) 
+#define DBGW(m_) 
 #endif // ! _DEBUG
 
+#undef SXW
+#define SXW(f_, x_ ) win32_msg_boxW(L"Expression:\n%s\n\nResult:\n" f_ , #x_, (x_))
+
+#undef SXA
+#define SXA(f_, x_ ) win32_msg_boxA("Expression:\n%s\n\nResult:\n" f_ , #x_, (x_))
+
+#if 0
 #undef  WIN32_ERROR_MESSAGE_SIZE
 #define WIN32_ERROR_MESSAGE_SIZE 0xFF
 
@@ -137,7 +179,7 @@ extern "C" {
 				0, NULL);
 
 #ifndef  NDEBUG
-		_ASSERTE(format_rezult > 0);
+		DBJ_ASSERT(format_rezult > 0);
 		if (format_rezult < 1) {
 			LocalFree(lpMsgBuf);
 			return result_err_msg; // empty msg
@@ -177,7 +219,7 @@ extern "C" {
 		}
 		return result_err_msg;
 	} // win32_error_msg
-
+#endif // 0
 #ifdef __cplusplus
 } // "C"
 #endif // __cplusplus

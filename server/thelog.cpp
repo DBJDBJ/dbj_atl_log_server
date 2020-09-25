@@ -12,9 +12,12 @@ STDMETHODIMP Cthelog::InterfaceSupportsErrorInfo(REFIID riid)
 	{
 		&IID_Ithelog,
 	};
-	for (int i=0;i<sizeof(arr)/sizeof(arr[0]);i++)
+
+	 for (int i=0;i<sizeof(arr)/sizeof(arr[0]);i++)
+	//for (int i=0; i < DBJ_COUNT_OF(arr) ; i++)
 	{
-		if (InlineIsEqualGUID(*arr[i],riid))
+		if ( dbj::win::equal_guids(*arr[i], riid) )
+		// if (InlineIsEqualGUID(*arr[i],riid))
 			return S_OK;
 	}
 	return S_FALSE;
@@ -32,40 +35,43 @@ STDMETHODIMP Cthelog::get_logfilename(BSTR * pVal)
 {
 	// TODO: Add your implementation code here
 
+	DBGW(__FUNCSIG__);
+
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::put_logfilename(BSTR newVal)
 {
-	// TODO: Add your implementation code here
+	DBGW(__FUNCSIG__);
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::get_doelapsedtime(BOOL * pVal)
 {
-	// TODO: Add your implementation code here
+	DBGW(__FUNCSIG__);
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::put_doelapsedtime(BOOL newVal)
 {
-	// TODO: Add your implementation code here
+	DBGW(__FUNCSIG__);
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::get_status(BSTR * pVal)
 {
-	// TODO: Add your implementation code here
+	DBGW(__FUNCSIG__);
 
 	return S_OK;
 }
 
+// hmm .. argument is not a pointer here?
 STDMETHODIMP Cthelog::log(BSTR logtext_)
 {
-	// TODO: Add your implementation code here
+	DBGW(__FUNCSIG__);
 
 	return S_OK;
 }
