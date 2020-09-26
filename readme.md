@@ -1,6 +1,11 @@
-# [ATL](https://docs.microsoft.com/en-us/cpp/atl/active-template-library-atl-concepts?view=vs-2019) Server 2020?!
+<h1> ATL COM Server 2020?! </h1>
 
-Yes this is ATL indeed. It all started very innocently. I was experimenting with [cl /kernel](https://docs.microsoft.com/en-us/cpp/build/reference/kernel-create-kernel-mode-binary?view=vs-2019) switch. Trying all sorts of projects, from modern MS STL code, back to Win32. And then I wondered into my own code from pre 1998 (gasp!). Little I know it never worketh...
+- [1.1. Modus Operandi](#11-modus-operandi)
+  - [1.1.1. Knowledge Rules](#111-knowledge-rules)
+  - [1.1.2. How COM/RPC works](#112-how-comrpc-works)
+- [1.2. Usage](#12-usage)
+
+Yes this is [ATL](https://docs.microsoft.com/en-us/cpp/atl/active-template-library-atl-concepts?view=vs-2019) indeed. It all started very innocently. I was experimenting with [cl /kernel](https://docs.microsoft.com/en-us/cpp/build/reference/kernel-create-kernel-mode-binary?view=vs-2019) switch. Trying all sorts of projects, from modern MS STL code, back to Win32. And then I wondered into my own code from pre 1998 (gasp!). Little I know it never worketh...
 
 That was 24 hours ago. Which I spent refactoring, and making it work. It *seems* to work now. There is also a cpp client. Using `comdef.h` and the rest. 
 
@@ -8,11 +13,11 @@ Both server and the client are [/kernel](https://docs.microsoft.com/en-us/cpp/bu
 
 Client server communication over COM is working. Server is mainly without functionality of the logging. That is next.
 
-## Modus Operandi
+## 1.1. Modus Operandi
 
 [COM](https://en.wikipedia.org/wiki/Component_Object_Model) is based on [MSRPC](https://en.wikipedia.org/wiki/Microsoft_RPC). 
 
-### Knowledge Rules
+### 1.1.1. Knowledge Rules
 
 It is critical you read those two Wikipedia articles first. Just after that take any direction you choose in gaining more knowledge about COM: paper books, ancient PDF's or whatever.
 
@@ -20,7 +25,7 @@ Advice: [MS DOCS](https://docs.microsoft.com/en-us/) (what was MSDN) is vast. It
 
 So you better know are you barking to the wrong tree before you invest into climbing it. And for that I find Wikipedia priceless. Usually Wikipedia IT articles are written by very good people. With a lot of important historical perspective. Do understand we are here investigating complex technology pre dating StackOverflow escape hatch. Always start from WikiPedia.
 
-### How COM/RPC works
+### 1.1.2. How COM/RPC works
 
 <h2>&nbsp;</h2>
 
@@ -36,12 +41,23 @@ Looks rather over elaborated. But that works and it works well. Local RPC calls 
 
 COM is an "modern" Object Oriented Architecture based on RPC.
 
+<h3>&nbsp;</h3>
 
-## Usage
+## 1.2. Usage
+
+<h3>&nbsp;</h3>
+
+<h3>WARNING! Do EVERYTHING as administrator</h3>
+
+<h3>&nbsp;</h3>
 
 > For client / server connection to be established the windows security is the roadblock. Please be sure both are running the administrator context. Including the VStudio sessions you use.
 
 > From VStudio, before the client debugging session use "Debug --> Attach to process" to check if `dbjatllog` is running.
+
+<h2>&nbsp;</h2>
+
+**Build and test**
 
 Two separate solutions are provided, one for sever and one for client. You need to open two Visual Studio sessions. One with `server.sln` and the other with `client.sln`. Even better if you have two (or more) monitors. you keep them completely separate. Make sure you start the cmd.exe in admin mode.
 
