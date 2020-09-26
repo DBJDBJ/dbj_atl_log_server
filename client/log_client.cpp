@@ -4,7 +4,7 @@
 
 ///KB: http://resources.esri.com/help/9.3/arcgisengine/com_cpp/COM/VCpp/ImportArcGISTypeLibs.htm
 
-#define DBJ_LOG_TYPE_LIB "../server/bteclog.tlb"
+#define DBJ_LOG_TYPE_LIB "../server/dbjlogsvr.tlb"
 #define DBJ_TYPE_LIB_NAMESPACE "dbjlog"
 
 #import DBJ_LOG_TYPE_LIB          /* Type library to generate C++ wrappers */ \

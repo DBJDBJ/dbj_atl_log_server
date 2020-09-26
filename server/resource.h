@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
-// Used by bteclog.rc
+// Microsoft Visual C++ generated include file.
+// Used by dbjatllog.rc
 //
 #define IDS_PROJNAME                    100
 #define IDR_Bteclog                     100

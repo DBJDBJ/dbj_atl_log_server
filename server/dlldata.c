@@ -19,12 +19,12 @@
 extern "C"   {
 #endif
 
-EXTERN_PROXY_FILE( bteclog )
+EXTERN_PROXY_FILE( dbjlogsvr )
 
 
 PROXYFILE_LIST_START
 /* Start of list */
-  REFERENCE_PROXY_FILE( bteclog ),
+  REFERENCE_PROXY_FILE( dbjlogsvr ),
 /* End of list */
 PROXYFILE_LIST_END
 

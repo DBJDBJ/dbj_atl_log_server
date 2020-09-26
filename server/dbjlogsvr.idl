@@ -1,0 +1,47 @@
+#include <olectl.h>
+// bteclog.idl : IDL source for bteclog.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (bteclog.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	
+
+	[
+		object,
+		uuid(CE863F3F-799C-11D2-94EF-000000000000),
+		dual,
+		helpstring("Ithelog Interface"),
+		pointer_default(unique)
+	]
+	interface Ithelog : IDispatch
+	{
+		[propget, id(1), helpstring("The current log filename")] HRESULT logfilename([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("The current log filename")] HRESULT logfilename([in] BSTR newVal);
+		[propget, id(2), helpstring("TRUE if elapsed time is to be calculated and added to each call of log() method")] HRESULT doelapsedtime([out, retval] BOOL *pVal);
+		[propput, id(2), helpstring("TRUE if elapsed time is to be calculated and added to each call of log() method")] HRESULT doelapsedtime([in] BOOL newVal);
+		[propget, id(3), helpstring("Current status")] HRESULT status([out, retval] BSTR *pVal);
+		[id(4), helpstring("Log the line of text")] HRESULT log([in] BSTR logtext_);
+	};
+[
+	uuid(CE863F32-799C-11D2-94EF-000000000000),
+	version(1.0),
+	helpstring("bteclog 1.0 Type Library")
+]
+library BTECLOGLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(CE863F40-799C-11D2-94EF-000000000000),
+		helpstring("thelog Class")
+	]
+	coclass thelog
+	{
+		[default] interface Ithelog;
+	};
+};

@@ -1,25 +1,16 @@
 // thelog.cpp : Implementation of Cthelog
 #include "stdafx.h"
-#include "bteclog.h"
+#include "dbjlogsvr.h"
 #include "thelog.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Cthelog
 
-STDMETHODIMP Cthelog::InterfaceSupportsErrorInfo(REFIID riid)
+STDMETHODIMP Cthelog::InterfaceSupportsErrorInfo(const IID & riid)
 {
-	static const IID* arr[] = 
-	{
-		&IID_Ithelog,
-	};
+	if ( dbj::win::equal_guids(IID_Ithelog, riid) )
+		return S_OK;
 
-	 for (int i=0;i<sizeof(arr)/sizeof(arr[0]);i++)
-	//for (int i=0; i < DBJ_COUNT_OF(arr) ; i++)
-	{
-		if ( dbj::win::equal_guids(*arr[i], riid) )
-		// if (InlineIsEqualGUID(*arr[i],riid))
-			return S_OK;
-	}
 	return S_FALSE;
 }
 

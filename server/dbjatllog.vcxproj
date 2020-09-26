@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <Keyword>AtlProj</Keyword>
     <ProjectGuid>{55D0845D-6410-4DEA-BBB8-40F37006D4AA}</ProjectGuid>
+    <ProjectName>dbjlogsvr</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -87,16 +88,17 @@
     <ClCompile Include="thelog.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="bteclog.idl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">midl /Oicf /h "bteclog.h" /iid "bteclog_i.c" "bteclog.idl"</Command>
+    <CustomBuild Include="dbjlogsvr.idl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">midl /Oicf /h "dbjlogsvr.h" /iid "dbjlogsvr_i.c" "dbjlogsvr.idl"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing MIDL step</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\bteclog.tlb;.\bteclog.h;.\bteclog_i.c;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">midl /Oicf /h "bteclog.h" /iid "bteclog_i.c" "bteclog.idl"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\dbjlogsvr.tlb;.\dbjlogsvr.h;.\dbjlogsvr_i.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">midl /Oicf /h "dbjlogsvr.h" /iid "dbjlogsvr_i.c" "dbjlogsvr.idl"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing MIDL step</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\bteclog.tlb;.\bteclog.h;.\bteclog_i.c;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\dbjlogsvr.tlb;.\dbjlogsvr.h;.\dbjlogsvr_i.c;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="thelog.h" />
   </ItemGroup>
@@ -104,10 +106,10 @@
     <CustomBuild Include="thelog.rgs" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="dbjatllog.rc" />
+    <ResourceCompile Include="dbjlogsvr.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbjatllog.rgs" />
+    <None Include="dbjlogsvr.rgs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

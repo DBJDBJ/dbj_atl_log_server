@@ -2,8 +2,8 @@ HKCR
 {
 	NoRemove AppID
 	{
-		{CE863F33-799C-11D2-94EF-000000000000} = s 'dbjatllog'
-		'dbjatllog.EXE'
+		{CE863F33-799C-11D2-94EF-000000000000} = s 'dbjlogsvr'
+		'dbjlogsvr.EXE'
 		{
 			val AppID = s {CE863F33-799C-11D2-94EF-000000000000}
 		}

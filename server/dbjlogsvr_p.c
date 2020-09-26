@@ -6,7 +6,7 @@
  /* File created by MIDL compiler version 8.01.0622 */
 /* at Tue Jan 19 04:14:07 2038
  */
-/* Compiler settings for bteclog.idl:
+/* Compiler settings for dbjlogsvr.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0622 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
@@ -47,7 +47,7 @@
 #endif /* __RPCPROXY_H_VERSION__ */
 
 
-#include "bteclog.h"
+#include "dbjlogsvr.h"
 
 #define TYPE_FORMAT_STRING_SIZE   61                                
 #define PROC_FORMAT_STRING_SIZE   217                               
@@ -55,32 +55,32 @@
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   1            
 
-typedef struct _bteclog_MIDL_TYPE_FORMAT_STRING
+typedef struct _dbjlogsvr_MIDL_TYPE_FORMAT_STRING
     {
     short          Pad;
     unsigned char  Format[ TYPE_FORMAT_STRING_SIZE ];
-    } bteclog_MIDL_TYPE_FORMAT_STRING;
+    } dbjlogsvr_MIDL_TYPE_FORMAT_STRING;
 
-typedef struct _bteclog_MIDL_PROC_FORMAT_STRING
+typedef struct _dbjlogsvr_MIDL_PROC_FORMAT_STRING
     {
     short          Pad;
     unsigned char  Format[ PROC_FORMAT_STRING_SIZE ];
-    } bteclog_MIDL_PROC_FORMAT_STRING;
+    } dbjlogsvr_MIDL_PROC_FORMAT_STRING;
 
-typedef struct _bteclog_MIDL_EXPR_FORMAT_STRING
+typedef struct _dbjlogsvr_MIDL_EXPR_FORMAT_STRING
     {
     long          Pad;
     unsigned char  Format[ EXPR_FORMAT_STRING_SIZE ];
-    } bteclog_MIDL_EXPR_FORMAT_STRING;
+    } dbjlogsvr_MIDL_EXPR_FORMAT_STRING;
 
 
 static const RPC_SYNTAX_IDENTIFIER  _RpcTransferSyntax = 
 {{0x8A885D04,0x1CEB,0x11C9,{0x9F,0xE8,0x08,0x00,0x2B,0x10,0x48,0x60}},{2,0}};
 
 
-extern const bteclog_MIDL_TYPE_FORMAT_STRING bteclog__MIDL_TypeFormatString;
-extern const bteclog_MIDL_PROC_FORMAT_STRING bteclog__MIDL_ProcFormatString;
-extern const bteclog_MIDL_EXPR_FORMAT_STRING bteclog__MIDL_ExprFormatString;
+extern const dbjlogsvr_MIDL_TYPE_FORMAT_STRING dbjlogsvr__MIDL_TypeFormatString;
+extern const dbjlogsvr_MIDL_PROC_FORMAT_STRING dbjlogsvr__MIDL_ProcFormatString;
+extern const dbjlogsvr_MIDL_EXPR_FORMAT_STRING dbjlogsvr__MIDL_ExprFormatString;
 
 
 extern const MIDL_STUB_DESC Object_StubDesc;
@@ -104,7 +104,7 @@ extern const USER_MARSHAL_ROUTINE_QUADRUPLE UserMarshalRoutines[ WIRE_MARSHAL_TA
 #endif
 
 
-static const bteclog_MIDL_PROC_FORMAT_STRING bteclog__MIDL_ProcFormatString =
+static const dbjlogsvr_MIDL_PROC_FORMAT_STRING dbjlogsvr__MIDL_ProcFormatString =
     {
         0,
         {
@@ -295,7 +295,7 @@ static const bteclog_MIDL_PROC_FORMAT_STRING bteclog__MIDL_ProcFormatString =
         }
     };
 
-static const bteclog_MIDL_TYPE_FORMAT_STRING bteclog__MIDL_TypeFormatString =
+static const dbjlogsvr_MIDL_TYPE_FORMAT_STRING dbjlogsvr__MIDL_TypeFormatString =
     {
         0,
         {
@@ -392,7 +392,7 @@ static const unsigned short Ithelog_FormatStringOffsetTable[] =
 static const MIDL_STUBLESS_PROXY_INFO Ithelog_ProxyInfo =
     {
     &Object_StubDesc,
-    bteclog__MIDL_ProcFormatString.Format,
+    dbjlogsvr__MIDL_ProcFormatString.Format,
     &Ithelog_FormatStringOffsetTable[-3],
     0,
     0,
@@ -404,7 +404,7 @@ static const MIDL_SERVER_INFO Ithelog_ServerInfo =
     {
     &Object_StubDesc,
     0,
-    bteclog__MIDL_ProcFormatString.Format,
+    dbjlogsvr__MIDL_ProcFormatString.Format,
     &Ithelog_FormatStringOffsetTable[-3],
     0,
     0,
@@ -463,7 +463,7 @@ static const MIDL_STUB_DESC Object_StubDesc =
     0,
     0,
     0,
-    bteclog__MIDL_TypeFormatString.Format,
+    dbjlogsvr__MIDL_TypeFormatString.Format,
     1, /* -error bounds_check flag */
     0x50002, /* Ndr library version */
     0,
@@ -477,37 +477,37 @@ static const MIDL_STUB_DESC Object_StubDesc =
     0
     };
 
-const CInterfaceProxyVtbl * const _bteclog_ProxyVtblList[] = 
+const CInterfaceProxyVtbl * const _dbjlogsvr_ProxyVtblList[] = 
 {
     ( CInterfaceProxyVtbl *) &_IthelogProxyVtbl,
     0
 };
 
-const CInterfaceStubVtbl * const _bteclog_StubVtblList[] = 
+const CInterfaceStubVtbl * const _dbjlogsvr_StubVtblList[] = 
 {
     ( CInterfaceStubVtbl *) &_IthelogStubVtbl,
     0
 };
 
-PCInterfaceName const _bteclog_InterfaceNamesList[] = 
+PCInterfaceName const _dbjlogsvr_InterfaceNamesList[] = 
 {
     "Ithelog",
     0
 };
 
-const IID *  const _bteclog_BaseIIDList[] = 
+const IID *  const _dbjlogsvr_BaseIIDList[] = 
 {
     &IID_IDispatch,
     0
 };
 
 
-#define _bteclog_CHECK_IID(n)	IID_GENERIC_CHECK_IID( _bteclog, pIID, n)
+#define _dbjlogsvr_CHECK_IID(n)	IID_GENERIC_CHECK_IID( _dbjlogsvr, pIID, n)
 
-int __stdcall _bteclog_IID_Lookup( const IID * pIID, int * pIndex )
+int __stdcall _dbjlogsvr_IID_Lookup( const IID * pIID, int * pIndex )
 {
     
-    if(!_bteclog_CHECK_IID(0))
+    if(!_dbjlogsvr_CHECK_IID(0))
         {
         *pIndex = 0;
         return 1;
@@ -516,13 +516,13 @@ int __stdcall _bteclog_IID_Lookup( const IID * pIID, int * pIndex )
     return 0;
 }
 
-const ExtendedProxyFileInfo bteclog_ProxyFileInfo = 
+const ExtendedProxyFileInfo dbjlogsvr_ProxyFileInfo = 
 {
-    (PCInterfaceProxyVtblList *) & _bteclog_ProxyVtblList,
-    (PCInterfaceStubVtblList *) & _bteclog_StubVtblList,
-    (const PCInterfaceName * ) & _bteclog_InterfaceNamesList,
-    (const IID ** ) & _bteclog_BaseIIDList,
-    & _bteclog_IID_Lookup, 
+    (PCInterfaceProxyVtblList *) & _dbjlogsvr_ProxyVtblList,
+    (PCInterfaceStubVtblList *) & _dbjlogsvr_StubVtblList,
+    (const PCInterfaceName * ) & _dbjlogsvr_InterfaceNamesList,
+    (const IID ** ) & _dbjlogsvr_BaseIIDList,
+    & _dbjlogsvr_IID_Lookup, 
     1,
     2,
     0, /* table of [async_uuid] interfaces */

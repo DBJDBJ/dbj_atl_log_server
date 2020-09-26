@@ -16,9 +16,9 @@ For me, removing any /EH was enough. Just then this will work: /kernel  /D_ATL_N
 #include "stdafx.h"
 #include "resource.h"
 #include "initguid.h"
-#include "bteclog.h"
+#include "dbjlogsvr.h"
 
-#include "bteclog_i.c"
+#include "dbjlogsvr_i.c"
 #include "thelog.h"
 
 
