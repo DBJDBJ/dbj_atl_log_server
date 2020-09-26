@@ -142,22 +142,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bteclog_cpp_client.h" />
+    <ClInclude Include="dbj_com_autoinit.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="win_dump_generator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="wwinmain.cpp" />
     <ClCompile Include="program.cpp" />
-    <ClCompile Include="the_log_client.cpp" />
+    <ClCompile Include="log_client.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="bteclog_cpp_client.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="bteclog_cpp_client.ico" />
-    <Image Include="small.ico" />
+    <Image Include="log_client.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

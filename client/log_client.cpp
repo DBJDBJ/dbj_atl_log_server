@@ -19,20 +19,17 @@
 /// KB: https://docs.microsoft.com/en-us/windows/win32/com/using-macros-for-error-handling?redirectedfrom=MSDN
 HRESULT log(const char* txt_)
 {
+	//constexpr GUID wotisthis = __uuidof(dbjlog::thelog);
+	//constexpr bool b1 = dbj::win::equal_guids(wotisthis, wotisthis);
+
 	dbjlog::IthelogPtr loggy ;
 
 	/*
 	if you do not register the server first, you will get
 	onecore\com\combase\dcomrem\resolver.cxx(2491)\combase.dll!00007FF99BFA5FF6: (caller: 00007FF99BFA5F05) ReturnHr(2) tid(2d7c) 80040154 Class not registered
-	on using the __uuidof() as bellow
 	*/
-	constexpr GUID wotisthis = __uuidof(dbjlog::thelog);
-
-	constexpr bool b1 = dbj::win::equal_guids(wotisthis, wotisthis);
 
 	VERIFY_HRESULT( loggy.CreateInstance(dbjlog::CLSID_thelog) ) ;
-
-	DBJ_ASSERT( loggy );
 
 	loggy->put_logfilename(_bstr_t(L"logfile.log"));
 

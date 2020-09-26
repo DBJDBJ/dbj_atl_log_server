@@ -96,7 +96,7 @@ extern "C" {
 
 #undef DBGA
 #ifdef _DEBUG
-#define DBGA(m_) win32_msg_boxA(("%s\n\n%s\n\n%d", m_, __FILE__, __LINE__)
+#define DBGA(m_) win32_msg_boxA("%s\n\n%s\n\n%d", m_, __FILE__, __LINE__)
 #else // ! _DEBUG
 #define DBGA(m_) 
 #endif // ! _DEBUG
