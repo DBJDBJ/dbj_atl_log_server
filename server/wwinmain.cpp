@@ -22,7 +22,7 @@ For me, removing any /EH was enough. Just then this will work: /kernel  /D_ATL_N
 #include "thelog.h"
 
 
-LONG CExeModule::Unlock()
+LONG CExeModule::Unlock() noexcept
 {
 	LONG l = CComModule::Unlock();
 	if (l == 0)

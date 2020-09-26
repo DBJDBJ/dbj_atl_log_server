@@ -4,6 +4,15 @@
 #include "../shared_items/win_msg_box.h"
 #include "../shared_items/win_guid_compare.h"
 
+// note: in here is a win syslog also used but just for windows builds
+#define CLUE_LOG_TO_SYSLOG
+
+// optional
+// otherwise it is empty string
+// #define CLUE_LOG_MODULE_NAME __FILE__
+
+#include "../cclue/cclue.h"
+
 #ifndef STRICT
 #define STRICT
 #endif // STRICT
@@ -15,7 +24,7 @@
 class CExeModule : public CComModule
 {
 public:
-	LONG Unlock();
+	LONG Unlock() noexcept ;
 	DWORD dwThreadID;
 };
 extern CExeModule _Module;

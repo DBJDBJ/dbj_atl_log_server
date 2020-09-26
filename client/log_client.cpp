@@ -14,7 +14,7 @@
   named_guids,                                     /* Named guids and declspecs             */ \
   exclude("OLE_COLOR", "OLE_HANDLE", "VARTYPE")    /* Exclude conflicting types             */
 
-///  KB: http://resources.esri.com/help/9.3/arcgisengine/com_cpp/COM/VCpp/SmartTypes.htm
+/// KB: http://resources.esri.com/help/9.3/arcgisengine/com_cpp/COM/VCpp/SmartTypes.htm
 /// KB: https://en.wikipedia.org/wiki/HRESULT
 /// KB: https://docs.microsoft.com/en-us/windows/win32/com/using-macros-for-error-handling?redirectedfrom=MSDN
 HRESULT log(const char* txt_)

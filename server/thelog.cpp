@@ -26,35 +26,35 @@ STDMETHODIMP Cthelog::get_logfilename(BSTR * pVal)
 {
 	// TODO: Add your implementation code here
 
-	DBGA(__FUNCSIG__);
+	CLUE_LOG_NOTICE << "Entered: " __FUNCSIG__ ;
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::put_logfilename(BSTR newVal)
 {
-	DBGA(__FUNCSIG__);
+	CLUE_LOG_NOTICE << "Entered: " __FUNCSIG__;
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::get_doelapsedtime(BOOL * pVal)
 {
-	DBGA(__FUNCSIG__);
+	CLUE_LOG_NOTICE << "Entered: " __FUNCSIG__;
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::put_doelapsedtime(BOOL newVal)
 {
-	DBGA(__FUNCSIG__);
+	CLUE_LOG_NOTICE << "Entered: " __FUNCSIG__;
 
 	return S_OK;
 }
 
 STDMETHODIMP Cthelog::get_status(BSTR * pVal)
 {
-	DBGA(__FUNCSIG__);
+	CLUE_LOG_NOTICE << "Entered: " __FUNCSIG__;
 
 	return S_OK;
 }
@@ -62,7 +62,7 @@ STDMETHODIMP Cthelog::get_status(BSTR * pVal)
 // hmm .. argument is not a pointer here?
 STDMETHODIMP Cthelog::log(BSTR logtext_)
 {
-	DBGA(__FUNCSIG__);
+	CLUE_LOG_NOTICE << "Entered: " __FUNCSIG__;
 
 	return S_OK;
 }
