@@ -69,7 +69,7 @@ static inline const wchar_t* this_app_full_path_w()
 static inline const char * this_app_full_path_a()
 {
 	static char full_path[1024] = { '\0' };
-	if (full_path[0] == L'\0') {
+	if (full_path[0] == '\0') {
 		int rez = GetModuleFileNameA(
 			(HMODULE)NULL, full_path, 1024
 		);

@@ -20,6 +20,7 @@ limitations under the License.
 
 /* set to 1 if using com */
 #define DBJCOM 1
+
 #if DBJCOM		
 #include <combaseapi.h>
 

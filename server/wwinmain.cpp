@@ -43,9 +43,8 @@ BEGIN_OBJECT_MAP(ObjectMap)
 	OBJECT_ENTRY(CLSID_thelog, Cthelog)
 END_OBJECT_MAP()
 
-/*
-*/
-enum 
+/////////////////////////////////////////////////////////////////////////////
+enum
 { 
 	UnregServer_arg = 0, RegServer_arg = 1, cli_arguments_max_count = 2 
 };
@@ -53,23 +52,50 @@ enum
 static const wchar_t* 
 cli_arguments[cli_arguments_max_count] 
 = { L"UnregServer", L"RegServer" };
+/////////////////////////////////////////////////////////////////////////////
 
+namespace {
+
+	static void* log_start(void*)
+	{
+		dbj_simple_log_startup(this_app_full_path_a()); return 0;
+	}
+	static void* log_end(void*)
+	{
+		dbj_log_finalize(); return 0;
+	}
+
+	static dbj::start_stop<log_start, log_end > dbj_simple_log_start_stop_;	
+	
+	static void* com_start(void*)
+	{
+#if ( defined(_WIN32_DCOM)  || defined(_ATL_FREE_THREADED))
+		HRESULT result = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
+#else
+		HRESULT result = ::CoInitialize(NULL);
+#endif
+		DBJ_ASSERT( S_OK == result );
+
+		return 0;
+	}
+	static void* com_finish(void*)
+	{
+		::CoUninitialize(); return 0;
+	}
+
+	static dbj::start_stop<com_start, com_finish > dbj_com_start_stop_;
+}
 
 /////////////////////////////////////////////////////////////////////////////
-//
 extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 	HINSTANCE /*hPrevInstance*/, LPWSTR lpCmdLine, int /*nShowCmd*/)
 {
-	dbj_simple_log_startup(this_app_full_path_a());
-
 	// WARNING: if lpCmdLine is not NULL it will NOT contain the app name
 	if (!lpCmdLine)
 		// taken from here lpCmdLine  **might** contain the app name
 		lpCmdLine = GetCommandLineW();
 
 	if (lpCmdLine) dbj_log_info("%S", lpCmdLine);
-
-	VERIFY_HRESULT( CoInitializeEx(NULL, COINIT_MULTITHREADED) );
 
 	_Module.Init(ObjectMap, hInstance);
 	_Module.dwThreadID = GetCurrentThreadId();
@@ -113,6 +139,5 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		dbj_log_info("%s","Control mesagess where handled. To run the server repeat the command without arguments. ");
 	}
 
-	CoUninitialize();
 	return int_result_;
 }

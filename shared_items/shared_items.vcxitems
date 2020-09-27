@@ -17,6 +17,7 @@
     <None Include="$(MSBuildThisFileDirectory)readme.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)dbj_start_stop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dbj_win_buffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)hresult_verify.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)win_msg_box.h" />

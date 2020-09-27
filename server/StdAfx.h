@@ -12,6 +12,7 @@
 #include "../shared_items/hresult_verify.h" // VERIFY_HRESULT
 // #include "../shared_items/win_msg_box.h"
 #include "../shared_items/win_guid_compare.h"
+#include "../shared_items/dbj_start_stop.h"
 
 #ifndef STRICT
 #define STRICT
