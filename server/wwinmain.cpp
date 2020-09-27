@@ -60,12 +60,14 @@ cli_arguments[cli_arguments_max_count]
 extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 	HINSTANCE /*hPrevInstance*/, LPWSTR lpCmdLine, int /*nShowCmd*/)
 {
+	dbj_simple_log_startup(this_app_full_path_a());
+
 	// WARNING: if lpCmdLine is not NULL it will NOT contain the app name
 	if (!lpCmdLine)
 		// taken from here lpCmdLine  **might** contain the app name
 		lpCmdLine = GetCommandLineW();
 
-	if (lpCmdLine) DBGW(lpCmdLine);
+	if (lpCmdLine) dbj_log_info("%S", lpCmdLine);
 
 	VERIFY_HRESULT( CoInitializeEx(NULL, COINIT_MULTITHREADED) );
 
@@ -80,7 +82,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		VERIFY_HRESULT( _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE) ) ;
 		int_result_ = _Module.UnregisterServer();
 		proceed_ = FALSE;
-		DBGW(L"UNRegistered OK");
+		dbj_log_info("%s","UNRegistered OK");
 	}
 
 	if (wcsstr(lpCmdLine, cli_arguments[RegServer_arg]) != NULL)
@@ -89,7 +91,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 
 		int_result_ = _Module.RegisterServer(TRUE);
 		proceed_ = FALSE; 
-		DBGW(L"Registered OK");
+		dbj_log_info("%s","Registered OK");
 	}
 
 	if (proceed_)
@@ -97,9 +99,9 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		HRESULT hr_ = _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,	REGCLS_MULTIPLEUSE) ;
 
 		if (SUCCEEDED(hr_))
-			DBGW(L"Server is running. Before stoping it call it from a command line with the 'UnregServer' single argument.");
+			dbj_log_info("%s","Server is running. Before stoping it call it from a command line with the 'UnregServer' single argument.");
 		else
-			DBGW(L"For some reason RegisterClassObjects() on module has failed? Still I will attempt to run. ");
+			dbj_log_info("%s", "For some reason RegisterClassObjects() on module has failed? Still I will attempt to run. ");
 
 		MSG msg;
 		while (GetMessage(&msg, 0, 0, 0))
@@ -108,7 +110,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		_Module.RevokeClassObjects();
 	}
 	else {
-		DBGW(L"Control mesagess where handled. To run the server repeat the command without arguments. ");
+		dbj_log_info("%s","Control mesagess where handled. To run the server repeat the command without arguments. ");
 	}
 
 	CoUninitialize();

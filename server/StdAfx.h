@@ -2,14 +2,15 @@
 
 // NOTE! This is server side exe , thus any gui popin out fo here 
 // it will be invisible to humans
-// thus logging it is
-// also since this is windows app there is not std streams 
+// thus logging it is, no GUI or MessageBox-es please
+//
+// also since this is windows app there is no std streams 
 // thus there is no point of printf-ing from here
 
 #include "../dbj--simplelog/dbj_simple_log.h"
 
 #include "../shared_items/hresult_verify.h" // VERIFY_HRESULT
-#include "../shared_items/win_msg_box.h"
+// #include "../shared_items/win_msg_box.h"
 #include "../shared_items/win_guid_compare.h"
 
 #ifndef STRICT

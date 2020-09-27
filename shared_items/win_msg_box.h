@@ -13,72 +13,7 @@
 extern "C" {
 #endif // __cplusplus
 
-	// with no extension
-	static inline const wchar_t * this_base_namew()
-	{
-		static wchar_t this_base_name[0xFF] = { L'\0' };
 
-		if (this_base_name[0] == L'\0') {
-
-			wchar_t this_file[1024] = { L'\0' };
-
-			int rez = GetModuleFileNameW(
-				(HMODULE)NULL, this_file, 1024
-			);
-
-			wchar_t* last_slash = wcsrchr(this_file, L'\\');
-			wchar_t* last_dot = wcsrchr(this_file, L'.');
-			wchar_t* walker = last_slash + 1;
-
-			DBJ_ASSERT(last_slash);
-			DBJ_ASSERT(last_dot);
-			DBJ_ASSERT(walker);
-
-			int this_base_name_idx = 0;
-			while (walker != last_dot) {
-				this_base_name[this_base_name_idx++] = *walker;
-				walker++;
-			}
-			this_base_name[this_base_name_idx] = L'\0';
-
-			return this_base_name;
-		}
-
-		return this_base_name;
-	}
-
-	static inline const char * this_base_namea()
-	{
-		static char this_base_name[0xFF] = { '\0' };
-
-		if (this_base_name[0] == '\0') {
-
-			char this_file[1024] = { '\0' };
-
-			int rez = GetModuleFileNameA(
-				(HMODULE)NULL, this_file, 1024
-			);
-
-			char* last_slash = strchr(this_file, L'\\');
-			char* last_dot = strchr(this_file, L'.');
-			char* walker = last_slash + 1;
-
-			DBJ_ASSERT(last_slash);
-			DBJ_ASSERT(last_dot);
-			DBJ_ASSERT(walker);
-
-			int this_base_name_idx = 0;
-			while (walker != last_dot) {
-				this_base_name[this_base_name_idx++] = *walker;
-				walker++;
-			}
-			this_base_name[this_base_name_idx] = '\0';
-
-			return this_base_name;
-		}
-
-		return this_base_name;
-	}
 
 
 	//  msg box no exit

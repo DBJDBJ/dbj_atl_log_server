@@ -24,5 +24,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)win32_strsafe.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)windows_includer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)win_guid_compare.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)win_char_transformations.h" />
   </ItemGroup>
 </Project>

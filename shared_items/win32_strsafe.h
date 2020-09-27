@@ -8,12 +8,7 @@
 // https://docs.microsoft.com/en-us/windows/win32/api/strsafe/nf-strsafe-stringcchprintfa
 /*
 
-STRSAFEAPI StringCchPrintfA(
-  STRSAFE_LPSTR  pszDest,
-  size_t         cchDest,
-  STRSAFE_LPCSTR pszFormat,
-  ...
-);
+STRSAFEAPI StringCchPrintfA(  STRSAFE_LPSTR  pszDest,  size_t cchDest,  STRSAFE_LPCSTR pszFormat,  ...);
 
 */
 #undef win_sprintfa
@@ -37,6 +32,6 @@ STRSAFEAPI StringCchVPrintfA(
 #undef win_vsprintfa
 #define win_vsprintfa StringCchVPrintfA 
 
-#undef win_sprintfw
+#undef win_vsprintfw
 #define win_vsprintfw StringCchVPrintfW
 

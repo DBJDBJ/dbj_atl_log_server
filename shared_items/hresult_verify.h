@@ -1,33 +1,47 @@
 #pragma once
+/*
+NOTE: this code depends on dbj_simplelog
+NOTE: dbj_simplelog does not support wchar_t 
+*/
 
-#include "win_msg_box.h"
-#include <crtdbg.h>
+#include "win_char_transformations.h"
+
+//#include "win_msg_box.h"
+//#include <crtdbg.h>
 #include <comdef.h>
 
 #ifndef _UNICODE
 #error Unicode build is required 
 #endif // _UNICODE
 
+#ifdef __cplusplus
 extern "C" {
+#endif // __cplusplus
+
 	/* NOTE: this is C++ code */
 	/* NOTE: process exit on anything but S_OK */
-	static inline bool verify_hresult_ ( HRESULT hr_, const wchar_t * file_ = L"", const long line = 0 ) 
+	static inline bool verify_hresult_(HRESULT hr_, const wchar_t* file_ = L"", const long line = 0)
 	{
-		if (S_OK == hr_ ) return true ;
+		if (S_OK == hr_) return true;
 
 		_com_error  comerr(hr_);
 
-if (line > 0 )  
-	win32_msg_boxW(L"IMMEDIATE EXIT !!\n\n'%s'\n\n%s\n# %d", comerr.ErrorMessage(), file_, line);
-else
-	win32_msg_boxW(L"IMMEDIATE EXIT !!\n\n'%s'", comerr.ErrorMessage() );
+		dbj_w_string err_msg_w_ = dbj_w_string_make( comerr.ErrorMessage() ) ;
+		dbj_a_string err_msg_a = dbj_wide_to_narrow( err_msg_w_ );
+		
+		if (line > 0)
+			dbj_log_fatal("IMMEDIATE EXIT !!\n\n'%s'\n\n%s\n# %d", err_msg_a.data , file_, line);
+		else
+			dbj_log_fatal("IMMEDIATE EXIT !!\n\n'%s'", err_msg_a.data );
 
 		ExitProcess((UINT)hr_);
 
 		return false; // will be not reached
 	}
 
-} // "C"
+#ifdef __cplusplus
+} // extern "C" 
+#endif // __cplusplus
 
 #undef VERIFY_HRESULT
 
