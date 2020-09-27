@@ -4,20 +4,11 @@
     <ClCompile Include="wwinmain.cpp" />
     <ClCompile Include="StdAfx.cpp" />
     <ClCompile Include="thelog.cpp" />
-    <ClCompile Include="..\cclue\syslog-win32\syslogc.c">
-      <Filter>cclue</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="thelog.h" />
-    <ClInclude Include="..\cclue\syslog-win32\syslog.h">
-      <Filter>cclue</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cclue\cclue.h">
-      <Filter>cclue</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="dbjlogsvr.idl" />
@@ -28,10 +19,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dbjlogsvr.rgs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="cclue">
-      <UniqueIdentifier>{59abbfa1-931e-4ff8-ba7f-46615f4f08e1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

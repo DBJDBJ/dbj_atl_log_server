@@ -5,12 +5,9 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjlogsvr", "server\dbjatllog.vcxproj", "{55D0845D-6410-4DEA-BBB8-40F37006D4AA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AE14886-A902-4B67-BA54-DDFD9402282D}"
-	ProjectSection(SolutionItems) = preProject
-		shared_items\hresult_verify.h = shared_items\hresult_verify.h
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbj_simplelog", "dbj--simplelog\lib\dbj_simplelog.vcxproj", "{6399ECB3-1781-430C-8628-561A3E379FD6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shared_items", "shared_items\shared_items.vcxitems", "{93AAE22C-830F-4BDE-8330-418C0F8EC6F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

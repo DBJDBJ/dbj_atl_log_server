@@ -81,7 +81,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cclue\syslog-win32\syslogc.c" />
     <ClCompile Include="wwinmain.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -102,8 +101,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cclue\cclue.h" />
-    <ClInclude Include="..\cclue\syslog-win32\syslog.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="thelog.h" />
@@ -116,6 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dbjlogsvr.rgs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dbj--simplelog\lib\dbj_simplelog.vcxproj">
+      <Project>{6399ecb3-1781-430c-8628-561a3e379fd6}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
