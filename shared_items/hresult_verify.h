@@ -34,7 +34,12 @@ extern "C" {
 		else
 			dbj_log_fatal("HRESULT != S_OK !! IMMEDIATE EXIT !! '%S'", comerr.ErrorMessage());
 
+#ifdef _CONSOLE
+#error This should not happen?
 		ExitProcess((UINT)hr_);
+#endif
+		dbj_log_info("Stopping in an orderly fashion. WM_QUIT passed.");
+		PostThreadMessage((DWORD)GetCurrentThreadId(), WM_QUIT, 0, 0);
 
 		return false; // will be not reached
 	}

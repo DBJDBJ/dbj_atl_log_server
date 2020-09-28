@@ -20,7 +20,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)dbj_start_stop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dbj_win_buffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)hresult_verify.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)win_dump_generator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)win_msg_box.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)win32_gettimeofday.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)win32_strsafe.h" />

@@ -5,16 +5,16 @@
 /* (c) 2020 by dbj@dbj.org -- LICENSE_DBJ -- https://dbj.org/license_dbj/ */
 
 
-#include "framework.h"
+#include "stdafx.h"
 
 
 //----------------------------------------------------------------------------------------------------
 // users need to deliver implmentaion of this function
-extern "C" int APIENTRY program (
-     HINSTANCE /*hInstance*/,
-     HINSTANCE /*hPrevInstance*/,
-     LPWSTR    /*lpCmdLine*/,
-     int       /*nCmdShow*/);
+extern "C" int APIENTRY program(
+    HINSTANCE /*hInstance*/,
+    HINSTANCE /*hPrevInstance*/,
+    LPWSTR    /*lpCmdLine*/,
+    int       /*nCmdShow*/);
 
 //----------------------------------------------------------------------------------------------------
 // we shall use this canary until the moot point with /kernel builds , SEH and destrcutors is resolved
@@ -38,8 +38,10 @@ struct canary final {
         ::CoUninitialize();
     }
 };
+
 static canary in_the_coalmine_;
 //----------------------------------------------------------------------------------------------------
+
 
 extern "C" int APIENTRY wWinMain(
     HINSTANCE hInstance,
@@ -54,10 +56,11 @@ extern "C" int APIENTRY wWinMain(
     __try
     {
         __try {
+
             program(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
         }
         __finally {
-            dbj_log_info("main __finally"); 
+
         }
     }
     __except (

@@ -1,26 +1,34 @@
 #pragma once
 
-// NOTE! This is server side exe , thus any gui popin out fo here 
-// it will be invisible to humans
-// thus logging it is, no GUI or MessageBox-es please
-//
-// also since this is windows app there is no std streams 
-// thus there is no point of printf-ing from here
+// DBJ FW requirement
+extern "C" {
+	static const char* DBJ_APP_NAME = "DBJ COM LOG Server";
+	static const char* DBJ_APP_VERSION = "1.0.0";
+}
 
+
+// remember to link in the library "dbj_simplelog.lib"
+// easy way: #pragma comment(lib, "dbj_simplelog.lib")
+// where the lib has to be on the path
 #include "../dbj--simplelog/dbj_simple_log.h"
 
-#include "../shared_items/windows_includer.h"
-#include "../shared_items/hresult_verify.h" // VERIFY_HRESULT
-// #include "../shared_items/win_msg_box.h"
 #include "../shared_items/win_guid_compare.h"
+#include "../shared_items/windows_includer.h"
+#include "../shared_items/win_dump_generator.h"
+
+#ifndef _KERNEL_MODE
 #include "../shared_items/dbj_start_stop.h"
+#endif
+
+#include "../shared_items/hresult_verify.h"
 
 #ifndef STRICT
 #define STRICT
 #endif // STRICT
 
 // #define _WIN32_WINNT 0x0400
-#define _ATL_APARTMENT_THREADED
+#undef _ATL_APARTMENT_THREADED
+#define _ATL_FREE_THREADED 
 #include <atlbase.h>
 
 //You may derive a class from CComModule and use it if you want to override

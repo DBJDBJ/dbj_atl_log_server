@@ -2,9 +2,9 @@
 
 #include "framework.h"
 //----------------------------------------------------------------------------------------------------
-HRESULT log_client(const char* txt_);
+extern "C" HRESULT log_client(const char* txt_);
 //----------------------------------------------------------------------------------------------------
-int APIENTRY program (_In_ HINSTANCE hInstance,
+extern "C" int APIENTRY program (_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)

@@ -19,16 +19,25 @@
 /// KB: https://en.wikipedia.org/wiki/HRESULT
 /// KB: https://docs.microsoft.com/en-us/windows/win32/com/using-macros-for-error-handling?redirectedfrom=MSDN
 /// 
-HRESULT log_client(const char* txt_)
+extern "C" HRESULT log_client(const char* txt_)
 {
-	//constexpr GUID wotisthis = __uuidof(dbjlog::thelog);
-	//constexpr bool b1 = dbj::win::equal_guids(wotisthis, wotisthis);
+	/*
+	we could create the log point in the constructor
+	but that is agains the ATL advice and again my advice too
+	we have no C++ exception in this /kernel build thus
+	we have no error signaling from the constructor
+	it is better to use CreateInstance as bellow and check
+	for the HRESULT
+	*/
 
 	dbjlog::IthelogPtr loggy ;
 
 	/*
 	if you do not register the server first, you will get
 	onecore\com\combase\dcomrem\resolver.cxx(2491)\combase.dll!00007FF99BFA5FF6: (caller: 00007FF99BFA5F05) ReturnHr(2) tid(2d7c) 80040154 Class not registered
+
+	or the server needs restarting ... which is a conceptual problem , why does it stop?
+	trhat is not good for unattended long running server side components
 	*/
 
 	VERIFY_HRESULT( loggy.CreateInstance(dbjlog::CLSID_thelog) ) ;

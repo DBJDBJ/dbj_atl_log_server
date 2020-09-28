@@ -21,18 +21,22 @@ For me, removing any /EH was enough. Just then this will work: /kernel  /D_ATL_N
 #include "dbjlogsvr_i.c"
 #include "thelog.h"
 
+#define DBJ_SHORT_LIVED_SERVER ;
 
 LONG CExeModule::Unlock() noexcept
 {
 	LONG l = CComModule::Unlock();
 	if (l == 0)
 	{
-#if _WIN32_WINNT >= 0x0400
+#ifdef DBJ_SHORT_LIVED_SERVER
 		if (CoSuspendClassObjects() == S_OK)
+		{
+			dbj_log_info("Stopping. WM_QUIT passed.");
 			PostThreadMessage(dwThreadID, WM_QUIT, 0, 0);
-#else
-		PostThreadMessage(dwThreadID, WM_QUIT, 0, 0);
-#endif
+	     }
+#else  // ! DBJ_SHORT_LIVED_SERVER
+		dbj_log_info("Proceeding. WM_QUIT *not* passed.");
+#endif // ! DBJ_SHORT_LIVED_SERVER
 	}
 	return l;
 }
@@ -53,42 +57,7 @@ static const wchar_t*
 cli_arguments[cli_arguments_max_count] 
 = { L"UnregServer", L"RegServer" };
 /////////////////////////////////////////////////////////////////////////////
-/// automagicaly start stop dbj simple log and com init/uninit
-
-namespace {
-
-	static void* log_start(void*)
-	{
-		dbj_simple_log_startup(this_app_full_path_a()); return 0;
-	}
-	static void* log_end(void*)
-	{
-		dbj_log_finalize(); return 0;
-	}
-
-	static dbj::start_stop<log_start, log_end > dbj_simple_log_start_stop_;	
-	
-	static void* com_start(void*)
-	{
-#if ( defined(_WIN32_DCOM)  || defined(_ATL_FREE_THREADED))
-		HRESULT result = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
-#else
-		HRESULT result = ::CoInitialize(NULL);
-#endif
-		DBJ_ASSERT( S_OK == result );
-
-		return 0;
-	}
-	static void* com_finish(void*)
-	{
-		::CoUninitialize(); return 0;
-	}
-
-	static dbj::start_stop<com_start, com_finish > dbj_com_start_stop_;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
+extern "C" int WINAPI program (HINSTANCE hInstance,
 	HINSTANCE /*hPrevInstance*/, LPWSTR lpCmdLine, int /*nShowCmd*/)
 {
 	// WARNING: if lpCmdLine is not NULL it will NOT contain the app name
@@ -108,7 +77,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 	{
 		VERIFY_HRESULT( _Module.UpdateRegistryFromResource(IDR_Bteclog, FALSE) ) ;
 		int_result_ = _Module.UnregisterServer();
-		proceed_ = FALSE;
+		proceed_ = FALSE; // after de registration we will exit
 		dbj_log_info("%s","UNRegistered OK");
 	}
 
@@ -117,12 +86,19 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		VERIFY_HRESULT( _Module.UpdateRegistryFromResource(IDR_Bteclog, TRUE) ) ;
 
 		int_result_ = _Module.RegisterServer(TRUE);
-		proceed_ = FALSE; 
+		proceed_ = TRUE;  // after registration we proceed to server running state
 		dbj_log_info("%s","Registered OK");
 	}
 
-	if (proceed_)
-	{
+	// what happens if we run from the command line server exe to which we have given UnregServer
+	// in the previous run?
+	// peraps we should read the registry to find out if server is registered?
+	// or the RegisterClassObjects bellow will fail in server is not registered?
+
+	if (! proceed_){
+		dbj_log_info("%s", "Server is un registered. Exiting...");
+		return EXIT_SUCCESS;
+	}
 		HRESULT hr_ = _Module.RegisterClassObjects(CLSCTX_LOCAL_SERVER,	REGCLS_MULTIPLEUSE) ;
 
 		if (SUCCEEDED(hr_))
@@ -131,14 +107,27 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 			dbj_log_info("%s", "For some reason RegisterClassObjects() on module has failed? Still I will attempt to run. ");
 
 		MSG msg;
-		while (GetMessage(&msg, 0, 0, 0))
-			DispatchMessage(&msg);
+		BOOL bRet;
 
-		_Module.RevokeClassObjects();
-	}
-	else {
-		dbj_log_info("%s","If not unregistered to actually run the server repeat the command without arguments. ");
-	}
+		while (1)
+		{
+			bRet = GetMessage(&msg, NULL, 0, 0);
 
-	return int_result_;
+			if (bRet > 0)  // (bRet > 0 indicates a message that must be processed.)
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			else if (bRet < 0)  // (bRet == -1 indicates an error.)
+			{
+				_com_error cer(_com_error::WCodeToHRESULT( (WORD)GetLastError() ) );
+
+				dbj_log_error("Error in the main message loop -- %S", cer.ErrorMessage() );
+			}
+			else  // (bRet == 0 indicates "exit program".)
+			{
+				break;
+			}
+		}
+		return (int)msg.wParam;
 }
