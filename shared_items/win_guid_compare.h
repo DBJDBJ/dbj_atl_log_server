@@ -4,6 +4,22 @@
 
 https://stackoverflow.com/a/64065120/10870835
 
+NOTE: "self sorting" STL Containers need an "less than" operator on things to be stored in them. 
+Looking into the code bellow one can imagine such a "thing" being done for GUIDS. Very unnatural but possible.
+
+( std::priority_queue or std::multiset, etc)
+
+You have (large) set of non-trivial structures stored persistently. You need to "put" into self sorting container for some processing.
+You will have handlers in your run time not the full instances taken in and out of the storage.
+
+And GUID is an ideal handle.
+
+You will read just handles (aka GUIDS's) and use them all the way to the moment you actually 
+have to look into the structure. To be able to use these GUID's you need to have an "less than" operator. 
+
+Still not logicaly very sensical because GUID is an highly random value. But someone might need 
+
+     bool less_than_guid( const GUID& rguid1, const GUID& rguid2  );
 */
 
 #include <guiddef.h>
