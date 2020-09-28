@@ -1,8 +1,9 @@
-// bteclog_cpp_client.cpp : Defines the entry point for the application.
 //
 
 #include "framework.h"
-
+//----------------------------------------------------------------------------------------------------
+HRESULT log_client(const char* txt_);
+//----------------------------------------------------------------------------------------------------
 int APIENTRY program (_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -10,6 +11,10 @@ int APIENTRY program (_In_ HINSTANCE hInstance,
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
+
+
+    VERIFY_HRESULT(log_client("diving into the com log server client test now!"));
+
 
     MSG msg;
 

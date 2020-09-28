@@ -3,6 +3,10 @@
 (c) 2020 bu dbj@dbj.org 
 */
 
+#ifdef _KERNEL_MODE
+#pragma message( __FILE__ " has sense only in the NON KERNEL builds")
+#endif // _KERNEL_MODE
+
 
 namespace dbj {
 	/*

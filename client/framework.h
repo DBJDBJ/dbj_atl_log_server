@@ -1,20 +1,26 @@
 #pragma once
 /* (c) 2020 by dbj@dbj.org -- LICENSE_DBJ -- https://dbj.org/license_dbj/ */
 
-// also since this is windows app there is no std streams 
-// thus there is no point of printf-ing from here
+// DBJ FW requirement
+extern "C" {
+     static const char* DBJ_APP_NAME = "DBJ COM Client" ;
+     static const char* DBJ_APP_VERSION = "1.0.0";
+}
+
+
+// remember to link in the library "dbj_simplelog.lib"
+// easy way: #pragma comment(lib, "dbj_simplelog.lib")
+// where the lib has to be on the path
 #include "../dbj--simplelog/dbj_simple_log.h"
 
+#include "../shared_items/windows_includer.h"
+#include "../shared_items/win_dump_generator.h"
 
-#include "../shared_items/windows_includer.h" // DBJ_VERIFYX , DBJ_ASSERT
-#include "../shared_items/hresult_verify.h"
+#ifndef _KERNEL_MODE
 #include "../shared_items/dbj_start_stop.h"
+#endif
 
-#define APP_NAME "dbjlogsvr_cpp_client"
-#define APP_VERSION "0.2.0"
-
-#include "win_dump_generator.h"
-
+#include "../shared_items/hresult_verify.h"
 
 #include <stdlib.h>
 #include <malloc.h>

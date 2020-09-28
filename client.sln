@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog_client", "client\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbj_simplelog", "dbj--simplelog\lib\dbj_simplelog.vcxproj", "{6399ECB3-1781-430C-8628-561A3E379FD6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shared_items", "shared_items\shared_items.vcxitems", "{93AAE22C-830F-4BDE-8330-418C0F8EC6F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

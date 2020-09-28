@@ -1,6 +1,10 @@
 #pragma once
 
-
+// DBJ FW requirement
+extern "C" {
+    extern const char* DBJ_APP_NAME;
+    extern const char* DBJ_APP_VERSION;
+}
 
 //----------------------------------------------------------------------------------------------------
 /*
@@ -49,8 +53,8 @@ static inline int GenerateDump(EXCEPTION_POINTERS* pExceptionPointers)
 
     char  szPath[MAX_PATH] = { 0 };
     char  szFileName[MAX_PATH] = { 0 };
-    const char* szAppName = APP_NAME;
-    const char* szVersion = APP_VERSION;
+    const char* szAppName = DBJ_APP_NAME;
+    const char* szVersion = DBJ_APP_VERSION;
     DWORD dwBufferSize = MAX_PATH;
     HANDLE hDumpFile = 0;
     SYSTEMTIME stLocalTime;
