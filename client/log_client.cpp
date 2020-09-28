@@ -7,17 +7,19 @@
 #define DBJ_LOG_TYPE_LIB "../server/dbjlogsvr.tlb"
 #define DBJ_TYPE_LIB_NAMESPACE "dbjlog"
 
-#import DBJ_LOG_TYPE_LIB          /* Type library to generate C++ wrappers */ \
+#import DBJ_LOG_TYPE_LIB                           /* Type library to generate C++ wrappers */ \
   raw_interfaces_only,                             /* Don't add raw_ to method names        */ \
   raw_native_types,                                /* Don't map to DTC smart types          */ \
   rename_namespace(DBJ_TYPE_LIB_NAMESPACE),                                                    \
   named_guids,                                     /* Named guids and declspecs             */ \
   exclude("OLE_COLOR", "OLE_HANDLE", "VARTYPE")    /* Exclude conflicting types             */
 
+/// 
 /// KB: http://resources.esri.com/help/9.3/arcgisengine/com_cpp/COM/VCpp/SmartTypes.htm
 /// KB: https://en.wikipedia.org/wiki/HRESULT
 /// KB: https://docs.microsoft.com/en-us/windows/win32/com/using-macros-for-error-handling?redirectedfrom=MSDN
-HRESULT log(const char* txt_)
+/// 
+HRESULT log_client(const char* txt_)
 {
 	//constexpr GUID wotisthis = __uuidof(dbjlog::thelog);
 	//constexpr bool b1 = dbj::win::equal_guids(wotisthis, wotisthis);

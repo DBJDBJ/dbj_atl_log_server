@@ -4,7 +4,7 @@ NOTE: this code depends on dbj_simplelog
 NOTE: dbj_simplelog does not support wchar_t 
 */
 
-#include "win_char_transformations.h"
+// #include "win_char_transformations.h"
 
 //#include "win_msg_box.h"
 //#include <crtdbg.h>
@@ -18,7 +18,7 @@ NOTE: dbj_simplelog does not support wchar_t
 extern "C" {
 #endif // __cplusplus
 
-	/* NOTE: this is C++ code */
+	/* NOTE: this is C++ code inside extern "C" { } block */
 	/* NOTE: process exit on anything but S_OK */
 	static inline bool verify_hresult_(HRESULT hr_, const wchar_t* file_ = L"", const long line = 0)
 	{
@@ -26,13 +26,13 @@ extern "C" {
 
 		_com_error  comerr(hr_);
 
-		dbj_w_string err_msg_w_ = dbj_w_string_make( comerr.ErrorMessage() ) ;
-		dbj_a_string err_msg_a = dbj_wide_to_narrow( err_msg_w_ );
+		//dbj_w_string err_msg_w_ = dbj_w_string_make( comerr.ErrorMessage() ) ;
+		//dbj_a_string err_msg_a = dbj_wide_to_narrow( err_msg_w_ );
 		
 		if (line > 0)
-			dbj_log_fatal("IMMEDIATE EXIT !!\n\n'%s'\n\n%s\n# %d", err_msg_a.data , file_, line);
+			dbj_log_fatal("HRESULT != S_OK !! IMMEDIATE EXIT !! '%S' Location:%S(# %d)", comerr.ErrorMessage(), file_, line);
 		else
-			dbj_log_fatal("IMMEDIATE EXIT !!\n\n'%s'", err_msg_a.data );
+			dbj_log_fatal("HRESULT != S_OK !! IMMEDIATE EXIT !! '%S'", comerr.ErrorMessage());
 
 		ExitProcess((UINT)hr_);
 

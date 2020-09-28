@@ -45,8 +45,10 @@ extern "C" {
 
 	static inline dbj_w_string dbj_narrow_to_wide(dbj_a_string a_string_)
 	{
+		const int slength = (int)strnlen_s(a_string_.data, dbj_a_w_string_max_size);
+
 		const int required_len = MultiByteToWideChar(
-			dbj_default_code_page, 0, a_string_.data , dbj_a_w_string_max_size - 1, 0, 0
+			dbj_default_code_page, 0, a_string_.data , slength, 0, 0
 		);
 
 		DBJ_VERIFYX( required_len < (dbj_a_w_string_max_size - 1) );
@@ -54,21 +56,21 @@ extern "C" {
 		dbj_w_string w_string_ = { L'\0' };
 
 		MultiByteToWideChar(
-			dbj_default_code_page, 0, a_string_.data, dbj_a_w_string_max_size - 1, w_string_.data , required_len
+			dbj_default_code_page, 0, a_string_.data, slength, w_string_.data , required_len
 		);
 		return w_string_;
 	}
 
 	static inline dbj_a_string dbj_wide_to_narrow(dbj_w_string w_string_ )
 	{
-		const int slength = dbj_a_w_string_max_size - 1 ;
+		const int slength =  (int)wcsnlen_s( w_string_.data, dbj_a_w_string_max_size) ;
 		dbj_a_string a_string_ = { '\0' };
 
 		const int required_len = WideCharToMultiByte(
 			dbj_default_code_page, 0, w_string_.data, slength, a_string_.data, slength, NULL, NULL
 		);
 
-		DBJ_VERIFYX(required_len < slength);
+		DBJ_VERIFYX(required_len < (dbj_a_w_string_max_size - 1));
 
 		WideCharToMultiByte(
 			dbj_default_code_page, 0, w_string_.data, slength, a_string_.data, required_len, NULL, NULL

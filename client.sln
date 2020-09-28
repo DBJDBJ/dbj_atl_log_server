@@ -5,16 +5,32 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbjatllog_client", "client\dbjatllog_cpp_client.vcxproj", "{D8CD330A-28DF-447B-8A48-EA87539405A1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbj_simplelog", "dbj--simplelog\lib\dbj_simplelog.vcxproj", "{6399ECB3-1781-430C-8628-561A3E379FD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x64.ActiveCfg = Debug|x64
 		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x64.Build.0 = Debug|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x86.ActiveCfg = Debug|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Debug|x86.Build.0 = Debug|Win32
 		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x64.ActiveCfg = Release|x64
 		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x64.Build.0 = Release|x64
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x86.ActiveCfg = Release|Win32
+		{D8CD330A-28DF-447B-8A48-EA87539405A1}.Release|x86.Build.0 = Release|Win32
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Debug|x64.ActiveCfg = Debug|x64
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Debug|x64.Build.0 = Debug|x64
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Debug|x86.ActiveCfg = Debug|Win32
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Debug|x86.Build.0 = Debug|Win32
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Release|x64.ActiveCfg = Release|x64
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Release|x64.Build.0 = Release|x64
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Release|x86.ActiveCfg = Release|Win32
+		{6399ECB3-1781-430C-8628-561A3E379FD6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

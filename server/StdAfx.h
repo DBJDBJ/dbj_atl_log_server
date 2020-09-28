@@ -9,6 +9,7 @@
 
 #include "../dbj--simplelog/dbj_simple_log.h"
 
+#include "../shared_items/windows_includer.h"
 #include "../shared_items/hresult_verify.h" // VERIFY_HRESULT
 // #include "../shared_items/win_msg_box.h"
 #include "../shared_items/win_guid_compare.h"

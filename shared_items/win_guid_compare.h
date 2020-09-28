@@ -5,7 +5,7 @@
 https://stackoverflow.com/a/64065120/10870835
 
 NOTE: "self sorting" STL Containers need an "less than" operator on things to be stored in them. 
-Looking into the code bellow one can imagine such a "thing" being done for GUIDS. Very unnatural but possible.
+Looking into the code bellow one can imagine such a "thing" being done for GUID's. Very unnatural but possible.
 
 ( std::priority_queue or std::multiset, etc)
 
@@ -20,6 +20,8 @@ have to look into the structure. To be able to use these GUID's you need to have
 Still not logicaly very sensical because GUID is an highly random value. But someone might need 
 
      bool less_than_guid( const GUID& rguid1, const GUID& rguid2  );
+
+NOTE: there is UuidCompare function (rpcdce.h) but it is not compile time C++. Neither it is OS agnostic.
 */
 
 #include <guiddef.h>

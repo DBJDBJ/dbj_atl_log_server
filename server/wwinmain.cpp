@@ -53,6 +53,7 @@ static const wchar_t*
 cli_arguments[cli_arguments_max_count] 
 = { L"UnregServer", L"RegServer" };
 /////////////////////////////////////////////////////////////////////////////
+/// automagicaly start stop dbj simple log and com init/uninit
 
 namespace {
 
@@ -95,7 +96,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		// taken from here lpCmdLine  **might** contain the app name
 		lpCmdLine = GetCommandLineW();
 
-	if (lpCmdLine) dbj_log_info("%S", lpCmdLine);
+	if (lpCmdLine) dbj_log_info("Command line arguments are: %S", lpCmdLine);
 
 	_Module.Init(ObjectMap, hInstance);
 	_Module.dwThreadID = GetCurrentThreadId();
@@ -136,7 +137,7 @@ extern "C" int WINAPI wWinMain(HINSTANCE hInstance,
 		_Module.RevokeClassObjects();
 	}
 	else {
-		dbj_log_info("%s","Control mesagess where handled. To run the server repeat the command without arguments. ");
+		dbj_log_info("%s","If not unregistered to actually run the server repeat the command without arguments. ");
 	}
 
 	return int_result_;
