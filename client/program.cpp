@@ -2,7 +2,8 @@
 
 #include "framework.h"
 //----------------------------------------------------------------------------------------------------
-extern "C" HRESULT log_client(const char* txt_);
+extern "C" HRESULT log_client(const char* );
+// extern "C" HRESULT mshtml_client(const char* txt_);
 //----------------------------------------------------------------------------------------------------
 extern "C" int APIENTRY program (_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -13,6 +14,8 @@ extern "C" int APIENTRY program (_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
 
+    // VERIFY_HRESULT(mshtml_client("https://bing.com"));
+    
     VERIFY_HRESULT(log_client("diving into the com log server client test now!"));
 
 

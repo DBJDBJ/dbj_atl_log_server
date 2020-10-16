@@ -83,6 +83,8 @@ extern "C" int APIENTRY wWinMain(
         }
     }
 
+    _com_raise_error(S_OK);
+
     return EXIT_FAILURE;
 } // wWinMain
 
