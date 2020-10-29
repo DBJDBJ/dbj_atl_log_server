@@ -1,6 +1,4 @@
-#pragma once
-#ifndef DBJ_WWIN_MAIN_INC_
-#define DBJ_WWIN_MAIN_INC_
+
 
 /* (c) 2020 by dbj@dbj.org -- LICENSE_DBJ -- https://dbj.org/license_dbj/ */
 
@@ -26,7 +24,7 @@ struct canary final {
         // in this frist fw release we force users to stat/stop dbj simple log
         // and COM, always
         dbj_simple_log_startup(this_app_full_path_a());
-        HRESULT result = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
+        /*HRESULT result = */::CoInitializeEx(NULL, COINIT_MULTITHREADED);
         dbj_log_info("canary constructor called");
     }
     ~canary()
@@ -84,4 +82,4 @@ extern "C" int APIENTRY wWinMain(
 } // wWinMain
 
 
-#endif // DBJ_WWIN_MAIN_INC_
+

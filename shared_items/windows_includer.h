@@ -89,6 +89,8 @@ static inline const wchar_t* this_app_full_path_w()
 		int rez = GetModuleFileNameW(
 			(HMODULE)NULL, full_path, 1024
 		);
+
+		DBJ_ASSERT(rez != 0);
 	}
 	return full_path;
 }
@@ -100,6 +102,7 @@ static inline const char * this_app_full_path_a()
 		int rez = GetModuleFileNameA(
 			(HMODULE)NULL, full_path, 1024
 		);
+		DBJ_ASSERT(rez != 0);
 	}
 	return full_path;
 }
@@ -116,6 +119,8 @@ static inline const wchar_t* this_base_namew()
 		int rez = GetModuleFileNameW(
 			(HMODULE)NULL, this_file, 1024
 		);
+
+		DBJ_ASSERT(rez != 0);
 
 		wchar_t* last_slash = wcsrchr(this_file, L'\\');
 		wchar_t* last_dot = wcsrchr(this_file, L'.');
@@ -149,6 +154,8 @@ static inline const char* this_base_namea()
 		int rez = GetModuleFileNameA(
 			(HMODULE)NULL, this_file, 1024
 		);
+
+		DBJ_ASSERT(rez != 0);
 
 		char* last_slash = strchr(this_file, L'\\');
 		char* last_dot = strchr(this_file, L'.');

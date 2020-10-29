@@ -55,7 +55,7 @@ namespace dbj {
 		//	In anonymous namespace hide the auto-initializer instance
 		static const dbj::start_stop< enter, leave> dbj_example_autoinit__{};
 	} // anonspace
-#endif 0
+#endif // 0
 
 } // dbj
 

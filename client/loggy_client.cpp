@@ -21,6 +21,7 @@
 /// 
 extern "C" HRESULT log_client(const char* txt_)
 {
+	(void)txt_;
 	/*
 	we could create the log point in the constructor
 	but that is agains the ATL advice and again my advice too

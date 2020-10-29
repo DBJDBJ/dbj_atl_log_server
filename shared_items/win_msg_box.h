@@ -8,13 +8,9 @@
 #include <strsafe.h>
 #include <crtdbg.h>
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
-
-
-
 
 	//  msg box no exit
 	static inline void win32_msg_boxA(const char * fmt_ , ...)
@@ -29,11 +25,11 @@ extern "C" {
 		MessageBoxA(NULL, (LPCSTR)buff, this_base_namea(), MB_OK);
 	}
 
-#undef DBGA
+#undef DBJ_MSGA
 #ifdef _DEBUG
-#define DBGA(m_) win32_msg_boxA("%s\n\n%s\n\n%d", m_, __FILE__, __LINE__)
+#define DBJ_MSGA(m_) win32_msg_boxA("%s\n\nFile : %s\nLine # %d", m_, __FILE__, __LINE__)
 #else // ! _DEBUG
-#define DBGA(m_) 
+#define DBJ_MSGA(m_) 
 #endif // ! _DEBUG
 
 	static inline void win32_msg_boxW(const wchar_t * fmt_ , ... )
@@ -48,13 +44,14 @@ extern "C" {
 		MessageBoxW(NULL, (LPCWSTR)buff, this_base_namew(), MB_OK);
 	}
 
-#undef DBGW
+#undef DBJ_MSGW
 #ifdef _DEBUG
-#define DBGW(m_) win32_msg_boxW(L"%s\n\n%s\n\n%d", m_, __FILEW__, __LINE__ )
+#define DBJ_MSGW(m_) win32_msg_boxW(L"%s\n\nFile: %s\nLine # %d", m_, __FILEW__, __LINE__ )
 #else // ! _DEBUG
-#define DBGW(m_) 
+#define DBJ_MSGW(m_) 
 #endif // ! _DEBUG
 
+	// SX stands for Show eXpression
 #undef SXW
 #define SXW(f_, x_ ) win32_msg_boxW(L"Expression:\n%s\n\nResult:\n" f_ , #x_, (x_))
 

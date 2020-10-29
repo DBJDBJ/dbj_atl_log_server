@@ -16,9 +16,13 @@ extern "C" {
 #include "../shared_items/windows_includer.h"
 #include "../shared_items/win_dump_generator.h"
 
-#ifndef _KERNEL_MODE
+// destructor probably functions 
+// *pnly* if static 
+// runtime lib is used
 #include "../shared_items/dbj_start_stop.h"
-#endif
+#include "../shared_items/win_cli_args.h"
+#include "../shared_items/win_msg_box.h"
+
 
 #include "../shared_items/hresult_verify.h"
 

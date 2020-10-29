@@ -11,10 +11,13 @@ extern "C" int APIENTRY program (_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
+    UNREFERENCED_PARAMETER(hInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
+    UNREFERENCED_PARAMETER(nCmdShow);
 
 
-    // VERIFY_HRESULT(mshtml_client("https://bing.com"));
+    dbj_log_info("wargv[0] is: %S", dbj::win::app_cli_args.argv[0]);
+    dbj_log_info("basename is: %s", this_base_namea() );
     
     VERIFY_HRESULT(log_client("diving into the com log server client test now!"));
 

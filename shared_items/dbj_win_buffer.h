@@ -72,7 +72,7 @@ namespace dbj{ namespace win {
 		using buffer_type = DBJ_VECTOR <char_type>;
 
 		/*
-		there is a lot of vector moving/copy in here
+		there is a lot of vector moving/copying in here
 		*/
 		static buffer_type make(size_t count_)
 		{
@@ -207,7 +207,10 @@ namespace dbj{ namespace win {
 	};	 // buffer
 
 	/*
-	make compile time string literla buffer into array container. Simple usage idiom:
+	make compile time string literal buffer into array container. 
+	
+	Simple compile time usage:
+
 	constexpr auto arr_ = make_arr_buffer("string literal") ;
 	*/
 	template<typename T, size_t N >
