@@ -24,14 +24,15 @@ struct canary final {
         // in this frist fw release we force users to stat/stop dbj simple log
         // and COM, always
         dbj_simple_log_startup(this_app_full_path_a());
-        /*HRESULT result = */::CoInitializeEx(NULL, COINIT_MULTITHREADED);
-        dbj_log_info("canary constructor called");
+        HRESULT result = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
+        UNREFERENCED_PARAMETER(result);
+        LOG_DEBUG("canary constructor called");
     }
     ~canary()
     {
         // REMEMBER: this is /kernel build, 
         // if destructors are called there are conflicting reports
-        dbj_log_info("canary destructor called");
+        LOG_DEBUG("canary destructor called");
         dbj_log_finalize();
         ::CoUninitialize();
     }

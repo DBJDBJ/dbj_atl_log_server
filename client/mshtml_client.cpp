@@ -12,7 +12,7 @@
 #import DBJ_MSHTML_TYPE_LIB                        /* Type library to generate C++ wrappers */ \
   rename_namespace(DBJ_TYPE_LIB_NAMESPACE),                                                    \
   named_guids                                     /* Named guids and declspecs             */ 
-#endif
+#endif // 1
 
 /// 
 /// KB: http://resources.esri.com/help/9.3/arcgisengine/com_cpp/COM/VCpp/SmartTypes.htm
@@ -35,9 +35,9 @@ extern "C" HRESULT mshtml_client(const char* url_ )
 #if 0
 	dbj_mshtml::IHTMLWindow2Ptr html_window_ptr_;
 
-	VERIFY_HRESULT(html_window_ptr_.CreateInstance( __uuidof(dbj_mshtml::HTMLWindow2)) ) ;
+	VERIFY_S_OK(html_window_ptr_.CreateInstance( __uuidof(dbj_mshtml::HTMLWindow2)) ) ;
 
-	VERIFY_HRESULT(html_window_ptr_->navigate(_bstr_t(url_).GetBSTR()));	
+	VERIFY_S_OK(html_window_ptr_->navigate(_bstr_t(url_).GetBSTR()));	
 #endif // 0
 	/*
 	if you do not register the server first, you will get
@@ -47,7 +47,7 @@ extern "C" HRESULT mshtml_client(const char* url_ )
 	trhat is not good for unattended long running server side components
 	*/
 
-//	VERIFY_HRESULT( loggy.CreateInstance(dbj_mshtml::CLSID_thelog) ) ;
+//	VERIFY_S_OK( loggy.CreateInstance(dbj_mshtml::CLSID_thelog) ) ;
 
 	return S_OK;
 }

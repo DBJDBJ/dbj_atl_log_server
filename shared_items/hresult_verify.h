@@ -19,7 +19,7 @@ extern "C" {
 #endif // __cplusplus
 
 	/* NOTE: this is C++ code inside extern "C" { } block */
-	/* NOTE: process exit on anything but S_OK */
+	/* NOTE: process exits on anything but S_OK */
 	static inline bool verify_hresult_(HRESULT hr_, const wchar_t* file_ = L"", const long line = 0)
 	{
 		if (S_OK == hr_) return true;
@@ -48,10 +48,10 @@ extern "C" {
 } // extern "C" 
 #endif // __cplusplus
 
-#undef VERIFY_HRESULT
+#undef VERIFY_S_OK
 
 #ifdef _DEBUG
-#define VERIFY_HRESULT(HR_) ( verify_hresult_( HR_, __FILEW__, __LINE__) )
+#define VERIFY_S_OK(HR_) ( verify_hresult_( HR_, __FILEW__, __LINE__) )
 #else
-#define VERIFY_HRESULT(HR_) ( verify_hresult_( HR_) )
+#define VERIFY_S_OK(HR_) ( verify_hresult_( HR_) )
 #endif

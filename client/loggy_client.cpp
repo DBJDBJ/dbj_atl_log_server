@@ -41,12 +41,12 @@ extern "C" HRESULT log_client(const char* txt_)
 	trhat is not good for unattended long running server side components
 	*/
 
-	VERIFY_HRESULT( loggy.CreateInstance(dbjlog::CLSID_thelog) ) ;
+	VERIFY_S_OK( loggy.CreateInstance(dbjlog::CLSID_thelog) ) ;
 
 	loggy->put_logfilename(_bstr_t(L"logfile.log"));
 
 	_bstr_t log_file_path ;
-	VERIFY_HRESULT( loggy->get_logfilename( & log_file_path.GetBSTR() ) ) ;
+	VERIFY_S_OK( loggy->get_logfilename( & log_file_path.GetBSTR() ) ) ;
 	
 	return S_OK;
 }

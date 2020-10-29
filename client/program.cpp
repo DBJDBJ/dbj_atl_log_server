@@ -16,11 +16,10 @@ extern "C" int APIENTRY program (_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(nCmdShow);
 
 
-    dbj_log_info("wargv[0] is: %S", dbj::win::app_cli_args.argv[0]);
-    dbj_log_info("basename is: %s", this_base_namea() );
+    LOG_DEBUG("wargv[0] is: %S", dbj::win::app_cli_args.argv[0]);
+    LOG_DEBUG("basename is: %s", this_base_namea() );
     
-    VERIFY_HRESULT(log_client("diving into the com log server client test now!"));
-
+    VERIFY_S_OK(log_client("diving into the com log server client test now!"));
 
     MSG msg;
 
