@@ -2,6 +2,24 @@
 @REM for %%a in ("%~dp0\.") do for %%b in ("%%~dpa\.") do echo Parent basename: "%%~nxb"
 @REM @echo This folder full path: "%~dp0"
 
+:: it is very important you check first your requirements 
+:: against DIR command (cap)abilities
+::
+:: under here show any folder called .vs even it is hidden
+:: DIR /B /S /A:H /A:D .vs
+::
+:: under here show ONLY hidden folder called .vs
+:: DIR /B /S /A:HD .vs
+::
+:: under here show ONLY ALL hidden folders 
+:: DIR /B /S /A:HD
+::
+:: under here show ALL NOT hidden folders 
+:: DIR /B /S /A:D
+::
+:: usefull switch: /A:-S
+:: do not show system files or folders
+
 @echo off
 @cls
 setlocal
