@@ -12,8 +12,7 @@ if not defined maxLevel set maxLevel=3
 :procFolder
 pushd %1 2>nul || exit /b
 if %currentLevel% lss %maxLevel% (
-:: this can not find the hidden folders, like .vs
-  for /d %%F in (*) do (
+  FOR /F "EOL=: DELIMS=" %%F IN ('DIR /B /S /A:HD') DO (
     CALL :remove_folder_if %%~xnF %%~fF
     set /a currentLevel+=1
     call :procFolder "%%F"
@@ -38,21 +37,21 @@ if [%1] == [.vs] (
 @echo.  
 @echo remove folder %1
 @echo.  
-@rd /s /q %2
+@rd /s /q "%2"
 goto :end_remove_folder_if
 ) 
 if [%1] == [Release] (
 @echo.  
 @echo remove folder %1
 @echo.  
-@rd /s /q %2
+@rd /s /q "%2"
 else goto :end_remove_folder_if
 ) 
 if [%1] == [Debug] (
 @echo.  
 @echo remove folder %1
 @echo.  
-@rd /s /q %2
+@rd /s /q "%2"
 else goto :end_remove_folder_if
 )
 ::
